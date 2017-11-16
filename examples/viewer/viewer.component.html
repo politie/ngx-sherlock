@@ -1,0 +1,5 @@
+<p *ngFor="let line of page"
+   [style.fontSize]="size + 'pt'">{{line}}</p>
+<p [style.fontSize]="size + 'pt'">
+    <strong>{{pageNumber}} / {{totalPages}}</strong>
+</p>

@@ -53,6 +53,7 @@
     "file-loader": "^0.8.5",
     "fs-extra": "^2.1.2",
     "html-webpack-plugin": "^2.19.0",
+    "immutable": "^3.8.2",
     "istanbul-instrumenter-loader": "^1.2.0",
     "jasmine-core": "2.5.2",
     "jasmine-spec-reporter": "2.5.0",

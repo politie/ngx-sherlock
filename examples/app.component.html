@@ -1,0 +1,12 @@
+<section id="app">
+    <app-navigator [availableSizes]="availableSizes"
+                   [bookNames]="bookNames"
+                   (fontSizeChanged)="setFontSize($event)"
+                   (bookChanged)="setBook($event)"
+                   (pageNumberChanged)="setPageNumber($event)"></app-navigator>
+
+    <app-viewer [page]="currentPage$ | value"
+                [size]="currentFontSize$ | value"
+                [pageNumber]="currentPageNumber$ | value"
+                [totalPages]="currentTotalPages$ | value"></app-viewer>
+</section>
