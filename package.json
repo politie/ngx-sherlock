@@ -7,7 +7,7 @@
   "typings": "./ngx-sherlock.d.ts",
   "scripts": {
     "test": "node ./tasks/test",
-    "build": "npm run test && node ./tasks/build",
+    "build": "npm run test && node ./tasks/build && shx mv dist/@politie dist/politie",
     "g": "node ./node_modules/angular-librarian",
     "lint": "tslint ./src/**/*.ts",
     "postbuild": "rimraf build",
