@@ -6,7 +6,6 @@
   "main": "./bundles/ngx-sherlock.umd.js",
   "typings": "./ngx-sherlock.d.ts",
   "scripts": {
-    "prepack": "npm run build",
     "test": "node ./tasks/test",
     "build": "npm run test && node ./tasks/build && shx mv dist/@politie dist/politie",
     "g": "node ./node_modules/angular-librarian",
