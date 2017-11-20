@@ -28,20 +28,20 @@ module.exports = webpackCommon('dev', {
     },
     devtool: 'cheap-module-eval-source-map',
     entry: {
-        app: [ examplePath('example.main') ],
+        app: [examplePath('example.main')],
         scripts: [],
-        vendor: [ webpackUtils.srcPath('vendor') ],
-        styles: [ examplePath('styles.scss') ]
+        vendor: [webpackUtils.srcPath('vendor')],
+        styles: [examplePath('styles.scss')]
     },
     module: {
         rules: webpackUtils.buildRules({
             cssExtract: examplePath(),
             sassLoader: examplePath('styles.scss')
         }, {
-            include: examplePath(),
-            test: /styles\.scss$/,
-            use: ['style-loader', 'css-loader', 'sass-loader']
-        })
+                include: examplePath(),
+                test: /styles\.scss$/,
+                use: ['style-loader', 'css-loader', 'sass-loader']
+            })
     },
     output: {
         filename: '[name].bundle.js',
@@ -55,7 +55,7 @@ module.exports = webpackCommon('dev', {
         }),
         new HtmlWebpack({
             // shameless/shamefully stolen from Angular CLI
-            chunksSortMode: function(left, right) {
+            chunksSortMode: function (left, right) {
                 const leftIndex = entryPoints.indexOf(left.names[0]);
                 const rightIndex = entryPoints.indexOf(right.names[0]);
                 let direction = 0;
@@ -65,7 +65,6 @@ module.exports = webpackCommon('dev', {
                 } else if (leftIndex < rightIndex) {
                     direction = -1;
                 }
-
                 return direction;
             },
             filename: 'index.html',
