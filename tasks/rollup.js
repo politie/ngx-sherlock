@@ -12,11 +12,11 @@ const rollupUglify = require('rollup-plugin-uglify');
 
 const doRollup = (libName, dirs) => {
     const nameParts = extractName(libName);
-    const es5Entry = path.resolve(dirs.es5, `${nameParts.package}.js`);
-    const es2015Entry = path.resolve(dirs.es2015, `${nameParts.package}.js`);
+    const es5Input = path.resolve(dirs.es5, `${nameParts.package}.js`);
+    const es2015Input = path.resolve(dirs.es2015, `${nameParts.package}.js`);
     const destinations = generateDestinations(dirs.dist, nameParts);
     const baseConfig = generateConfig({
-        entry: es5Entry,
+        input: es5Input,
         external: [
             '@angular/common',
             '@angular/core',
@@ -29,7 +29,7 @@ const doRollup = (libName, dirs) => {
             '@politie/sherlock': 'politie.sherlock',
             '@politie/informant': 'politie.informant'
         },
-        moduleName: librarianUtils.caseConvert.dashToCamel(nameParts.package),
+        name: librarianUtils.caseConvert.dashToCamel(nameParts.package),
         onwarn: function rollupOnWarn(warning) {
             // keeps TypeScript this errors down
             if (warning.code !== 'THIS_IS_UNDEFINED') {
@@ -43,31 +43,32 @@ const doRollup = (libName, dirs) => {
             }),
             rollupSourcemaps()
         ],
-        sourceMap: true
+        sourcemap: true
     }, dirs.root);
     const fesm2015Config = Object.assign({}, baseConfig, {
-        entry: es2015Entry,
-        dest: destinations.fesm2015,
+        input: es2015Input,
+        file: destinations.fesm2015,
         format: 'es'
     });
     const fesm5Config = Object.assign({}, baseConfig, {
-        dest: destinations.fesm5,
+        file: destinations.fesm5,
         format: 'es'
     });
     const minUmdConfig = Object.assign({}, baseConfig, {
-        dest: destinations.minUmd,
+        input: destinations.minUmd,
+        file: destinations.minUmd,
         format: 'umd',
         plugins: baseConfig.plugins.concat([rollupUglify({})])
     });
     const umdConfig = Object.assign({}, baseConfig, {
-        dest: destinations.umd,
+        file: destinations.umd,
         format: 'umd'
     });
 
     const bundles = [
         fesm2015Config,
         fesm5Config,
-        minUmdConfig,
+        // minUmdConfig,
         umdConfig
     ].map((config) =>
         rollup.rollup(config).then((bundle) =>
