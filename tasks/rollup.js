@@ -21,12 +21,14 @@ const doRollup = (libName, dirs) => {
             '@angular/common',
             '@angular/core',
             '@politie/sherlock',
+            '@politie/sherlock-proxy',
             '@politie/informant'
         ],
         globals: {
             '@angular/common': 'ng.common',
             '@angular/core': 'ng.core',
             '@politie/sherlock': 'politie.sherlock',
+            '@politie/sherlock-proxy': 'politie.sherlock-proxy',
             '@politie/informant': 'politie.informant'
         },
         name: librarianUtils.caseConvert.dashToCamel(nameParts.package),

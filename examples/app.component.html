@@ -3,7 +3,8 @@
                    [bookNames]="bookNames"
                    (fontSizeChanged)="setFontSize($event)"
                    (bookChanged)="setBook($event)"
-                   (pageNumberChanged)="setPageNumber($event)"></app-navigator>
+                   (pageNumberChanged)="setPageNumber($event)">
+    </app-navigator>
 
     <app-viewer [page]="currentPage$ | value"
                 [size]="currentFontSize$ | value"

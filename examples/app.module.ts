@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
+import { FormsModule } from '@angular/forms';
 import { BrowserModule } from '@angular/platform-browser';
-import { NgxSherlockModule } from '../src'; // Local .tgz module
+import { NgxSherlockFormsModule, NgxSherlockModule } from '../src';
 
 import { AppComponent } from './app.component';
 import { NavigatorComponent } from './navigator/navigator.component';
@@ -16,6 +17,8 @@ import { ViewerComponent } from './viewer/viewer.component';
     imports: [
         BrowserModule,
         NgxSherlockModule,
+        NgxSherlockFormsModule,
+        FormsModule,
     ],
     providers: [UtilsService],
     bootstrap: [AppComponent],

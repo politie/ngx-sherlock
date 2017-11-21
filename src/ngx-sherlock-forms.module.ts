@@ -1,12 +1,13 @@
 import { NgModule } from '@angular/core';
-import { AtomValueAccessor } from './accessors';
+import { CheckboxValueAccessor, DefaultValueAccessor } from './accessors';
 
-export const FORM_PROVIDERS = [
-    AtomValueAccessor,
+export const SHERLOCK_ACCESSORS = [
+    CheckboxValueAccessor,
+    DefaultValueAccessor,
 ];
 
 @NgModule({
-    declarations: [...FORM_PROVIDERS],
-    exports: [...FORM_PROVIDERS],
+    declarations: [...SHERLOCK_ACCESSORS],
+    exports: [...SHERLOCK_ACCESSORS],
 })
 export class NgxSherlockFormsModule { }
