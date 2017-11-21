@@ -27,8 +27,8 @@ export class AppComponent {
 
     /**
      * Derivations are calculated derived state based on Atoms or other Derivations. They can be created by calling #derive
-     * on an Atom or other derivation, or can be made with the `derivation()` function. The latter automatically registers
-     * which derivable is dependent on which and updates derived state when any derivable in the state complex changes.
+     * on an Atom or other derivation, or can be made with the `derivation()` function. Both automatically register their
+     * dependant Derivables, but #derive automatically unpacks the Derivable it is called upon.
      */
     private readonly currentBookPaginated$ = derivation(
         () => this.utils.getPaginatedBook(this.currentFontSize$.get(), this.currentBook$.get()),
@@ -57,6 +57,6 @@ export class AppComponent {
     }
 
     setPageNumber(num: number) {
-        this.currentPageNumber$.set(this.currentPageNumber$.get() + num);
+        this.currentPageNumber$.swap(pageNumber => pageNumber + num);
     }
 }
