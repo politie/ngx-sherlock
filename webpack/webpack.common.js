@@ -11,7 +11,7 @@ const LoaderOptionsPlugin = webpack.LoaderOptionsPlugin;
 const webpackUtils = require('./webpack.utils');
 
 const getCommonConfig = (type) => {
-    const tsconfigType = type !== 'dev' ? `.${ type }` : '';
+    const tsconfigType = type !== 'dev' ? `.${type}` : '';
 
     return {
         module: {
@@ -20,8 +20,8 @@ const getCommonConfig = (type) => {
                     exclude: /node_modules/,
                     test: /\.ts$/,
                     use: [
-                        'awesome-typescript-loader?configFileName=' + webpackUtils.rootPath(`tsconfig${ tsconfigType }.json`),
-                        'angular2-template-loader?keepUrl=true'
+                        'awesome-typescript-loader?configFileName=' + webpackUtils.rootPath(`tsconfig${tsconfigType}.json`),
+                        'angular2-template-loader'
                     ]
                 },
                 { test: /\.html$/, use: 'raw-loader' },
@@ -46,15 +46,15 @@ const getCommonConfig = (type) => {
             new ExtractTextPlugin("*.css")
         ],
         resolve: {
-            extensions: [ '.js', '.ts' ],
-            modules: [ webpackUtils.rootPath('node_modules') ]
+            extensions: ['.js', '.ts'],
+            modules: [webpackUtils.rootPath('node_modules')]
         }
     };
 };
 
 module.exports = (type, typeConfig) => {
     const configs = [getCommonConfig(type), typeConfig];
-    const customConfigPath = webpackUtils.rootPath('configs', `webpack.${ type }.js`);
+    const customConfigPath = webpackUtils.rootPath('configs', `webpack.${type}.js`);
 
     if (fs.existsSync(customConfigPath)) {
         let customConfig = require(customConfigPath);

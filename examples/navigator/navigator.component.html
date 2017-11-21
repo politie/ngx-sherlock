@@ -1,0 +1,19 @@
+<div class="navigator">
+    <div class="page">
+        <h2>Pick a page</h2>
+        <button (click)="setPageNumber(-1)">Previous page</button>
+        <button (click)="setPageNumber(1)">Next page</button>
+    </div>
+    <div class="title">
+        <h2>Pick book</h2>
+        <button *ngFor="let book of bookNames"
+                (click)="setBook(book)">{{book}}</button>
+    </div>
+    <div class="size">
+        <h2>Set font size</h2>
+        <select (change)="setFontSize($event.target.value)">
+            <option *ngFor="let size of availableSizes"
+                    [value]="size">{{size + 'px'}}</option>
+        </select>
+    </div>
+</div>
