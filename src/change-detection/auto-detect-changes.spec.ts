@@ -27,6 +27,13 @@ describe('change detection', () => {
             cdr.internal$.set('new value');
             expect(cdr.detectChanges).toHaveBeenCalledTimes(2);
         });
+
+        it('should no longer call cdr#detectChanges when the component has been destroyed', () => {
+            expect(cdr.detectChanges).toHaveBeenCalledTimes(1);
+            cdr.destroy();
+            cdr.internal$.set('other value');
+            expect(cdr.detectChanges).toHaveBeenCalledTimes(1);
+        });
     });
 });
 
@@ -36,4 +43,8 @@ class MockChangeDetectorRef {
 
     detectChanges = jasmine.createSpy('detectChanges').and.callFake(() => this.internal$.get());
     onDestroy = jasmine.createSpy('onDestroy').and.callFake((fn: () => void) => this.destroyer = fn);
+
+    destroy() {
+        this.destroyer();
+    }
 }
