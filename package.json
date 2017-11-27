@@ -2,7 +2,7 @@
   "name": "@politie/ngx-sherlock",
   "version": "1.0.0-beta.0",
   "description": "ngx-sherlock is an Angular tooling library to be used with the @politie/sherlock distributed reactive state management library.",
-  "private": true,
+  "private": false,
   "main": "./bundles/ngx-sherlock.umd.js",
   "typings": "./ngx-sherlock.d.ts",
   "scripts": {
@@ -22,6 +22,9 @@
     "type": "git",
     "url": "https://github.com/politie/ngx-sherlock"
   },
+  "publishConfig": {
+    "access": "public"
+  },
   "keywords": [
     "angular",
     "sherlock",
@@ -35,7 +38,7 @@
     "Merijn van der Linden <njirem@gmail.com>",
     "Wouter Spaak <w.spaak@gmail.com>"
   ],
-  "license": "ISC",
+  "license": "Apache-2.0",
   "bugs": {
     "url": "https://github.com/politie/sherlock/issues"
   },
