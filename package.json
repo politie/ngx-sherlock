@@ -1,6 +1,6 @@
 {
   "name": "@politie/ngx-sherlock",
-  "version": "1.0.0-beta.0",
+  "version": "1.0.0-beta.1",
   "description": "ngx-sherlock is an Angular tooling library to be used with the @politie/sherlock distributed reactive state management library.",
   "private": false,
   "main": "./bundles/ngx-sherlock.umd.js",
