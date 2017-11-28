@@ -40,9 +40,9 @@
   ],
   "license": "Apache-2.0",
   "bugs": {
-    "url": "https://github.com/politie/sherlock/issues"
+    "url": "https://github.com/politie/ngx-sherlock/issues"
   },
-  "homepage": "https://github.com/politie/sherlock#readme",
+  "homepage": "https://github.com/politie/ngx-sherlock#readme",
   "devDependencies": {
     "@angular/compiler-cli": "^5.0.2",
     "@politie/sherlock-proxy": "^1.0.0-beta.0",
