@@ -41,35 +41,55 @@ The `autoDetectChanges` function guarantees model and view fidelity, meaning one
 
 #### Example
 
-`trusty-sidekick.component.html`:
-```html
-<h2>Well there you are, {{sidekick$.firstname.$value}} {{sidekick$.surname.$value}}!</h2>
-<input type="text" [(ngModel)]="sidekick$.firstname.$value" placeholder="First name">
-<input type="text" [(ngModel)]="sidekick$.surname.$value" placeholder="Surname">
-```
-
 `trusty-sidekick.component.ts`:
 ```typescript
-import { Component, OnInit, ChangeDetectionStrategy, ChangeDetectorRef } from '@angular/core';
+import { Component, OnInit, ChangeDetectionStrategy, ChangeDetectorRef, Input } from '@angular/core';
 import { autoDetectChanges } from '@politie/ngx-sherlock';
 import { atom } from '@politie/sherlock';
 import { ProxyDescriptor } from '@politie/sherlock-proxy';
 
 @Component({
     selector: 'trusty-sidekick',
-    templateUrl: 'trusty-sidekick.component.html',
-    changeDetection: ChangeDetectionStrategy.onPush,
+    template: `
+        <input type="text" [(ngModel)]="sidekick$.firstname.$value" placeholder="First name">
+        <input type="text" [(ngModel)]="sidekick$.surname.$value" placeholder="Surname">
+        <sidekick-greeter [name]="sidekick$"></sidekick-greeter>
+    `,
 })
-export class TrustySidekickComponent implements OnInit {
+export class TrustySidekickComponent {
 
     private readonly sidekickAtom$ = atom({ firstname: 'John', surname: 'Watson' });
     readonly sidekick$ = new ProxyDescriptor().$create(this.sidekick$);
+}
+
+@Component({
+    selector: 'sidekick-greeter',
+    template: `
+        <h2 *ngIf="!beObnoxious">Well hello there, {{name.firstname.$value}} {{name.surname.$value}}!</h2>
+        <h2 *ngIf="beObnoxious">So good of you to finally join us, {{name.surname.$value}}...</h2>
+        
+        <button (click)="toggle()">Change mood</button>     
+    `,
+    changeDetection: ChangeDetectionStrategy.OnPush,
+})
+export class SidekickGreeterComponent implements OnInit {
+    @Input() name: DerivableProxy<{ firstname: string, surname: string }>;
+    obnoxious$ = atom(false);
+
+    get beObnoxious() {
+        return this.obnoxious$.get();
+    }
 
     constructor(private readonly cdr: ChangeDetectorRef) { }
 
     ngOnInit() {
-        // Calling autoDetectChanges here will keep the template up-to-date with the state.
+        // Here we call #autoDetectChanges which will automatically react on changes in the state of
+        // SidekickGreeterComponent#name.
         autoDetectChanges(this.cdr);
+    }
+
+    toggle() {
+        this.obnoxious$.swap(mood => !mood);
     }
 }
 ```
@@ -98,7 +118,7 @@ import { Atom, atom } from '@politie/sherlock';
 @Component({
     selector: 'my-component';
     templateUrl: 'my.component.html',
-    changeDetection: ChangeDetectionStrategy.onPush,
+    changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class MyComponent implements OnInit {
     readonly counter$: Atom<number> = atom(0);
