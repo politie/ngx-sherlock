@@ -57,9 +57,7 @@ import { ProxyDescriptor } from '@politie/sherlock-proxy';
     `,
 })
 export class TrustySidekickComponent {
-
-    private readonly sidekickAtom$ = atom({ firstname: 'John', surname: 'Watson' });
-    readonly sidekick$ = new ProxyDescriptor().$create(this.sidekick$);
+    readonly sidekick$ = new ProxyDescriptor().$create(atom({firstname: 'John', surname: 'Watson'}));
 }
 
 @Component({
