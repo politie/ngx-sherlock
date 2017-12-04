@@ -9,27 +9,25 @@ const rollupCommon = require('rollup-plugin-commonjs');
 const rollupNodeResolve = require('rollup-plugin-node-resolve');
 const rollupSourcemaps = require('rollup-plugin-sourcemaps');
 const rollupUglify = require('rollup-plugin-uglify');
+const builtins = require('rollup-plugin-node-builtins');
+const nodeGlobals = require('rollup-plugin-node-globals');
 
 const doRollup = (libName, dirs) => {
     const nameParts = extractName(libName);
-    const es5Input = path.resolve(dirs.es5, `${nameParts.package}.js`);
-    const es2015Input = path.resolve(dirs.es2015, `${nameParts.package}.js`);
+    const es5Entry = path.resolve(dirs.es5, `${nameParts.package}.js`);
+    const es2015Entry = path.resolve(dirs.es2015, `${nameParts.package}.js`);
     const destinations = generateDestinations(dirs.dist, nameParts);
     const baseConfig = generateConfig({
-        input: es5Input,
+        entry: es5Entry,
         external: [
             '@angular/common',
-            '@angular/core',
-            '@politie/sherlock',
-            '@politie/informant'
+            '@angular/core'
         ],
         globals: {
             '@angular/common': 'ng.common',
-            '@angular/core': 'ng.core',
-            '@politie/sherlock': 'politie.sherlock',
-            '@politie/informant': 'politie.informant'
+            '@angular/core': 'ng.core'
         },
-        name: librarianUtils.caseConvert.dashToCamel(nameParts.package),
+        moduleName: librarianUtils.caseConvert.dashToCamel(nameParts.package),
         onwarn: function rollupOnWarn(warning) {
             // keeps TypeScript this errors down
             if (warning.code !== 'THIS_IS_UNDEFINED') {
@@ -37,38 +35,39 @@ const doRollup = (libName, dirs) => {
             }
         },
         plugins: [
+            builtins(),
             rollupNodeResolve({
                 jsnext: true,
-                module: true
+                module: true,
             }),
-            rollupSourcemaps()
+            nodeGlobals(),
+            rollupSourcemaps(),
         ],
-        sourcemap: true
+        sourceMap: true
     }, dirs.root);
     const fesm2015Config = Object.assign({}, baseConfig, {
-        input: es2015Input,
-        file: destinations.fesm2015,
+        entry: es2015Entry,
+        dest: destinations.fesm2015,
         format: 'es'
     });
     const fesm5Config = Object.assign({}, baseConfig, {
-        file: destinations.fesm5,
+        dest: destinations.fesm5,
         format: 'es'
     });
     const minUmdConfig = Object.assign({}, baseConfig, {
-        input: destinations.minUmd,
-        file: destinations.minUmd,
+        dest: destinations.minUmd,
         format: 'umd',
         plugins: baseConfig.plugins.concat([rollupUglify({})])
     });
     const umdConfig = Object.assign({}, baseConfig, {
-        file: destinations.umd,
+        dest: destinations.umd,
         format: 'umd'
     });
 
     const bundles = [
         fesm2015Config,
         fesm5Config,
-        // minUmdConfig,
+        minUmdConfig,
         umdConfig
     ].map((config) =>
         rollup.rollup(config).then((bundle) =>

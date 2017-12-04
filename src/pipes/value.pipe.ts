@@ -4,7 +4,6 @@ import { DerivableProxy, isDerivableProxy } from '../types/proxy';
 import { InvalidPipeArgumentError } from './InvalidPipeArgumentError';
 
 /**
- * @internal
  * Base reaction strategy.
  */
 export interface ReactionStrategy {
@@ -15,7 +14,6 @@ export interface ReactionStrategy {
 }
 
 /**
- * @internal
  * Reaction strategy for Derivable values.
  */
 export class DerivableStrategy implements ReactionStrategy {
@@ -35,7 +33,6 @@ export class DerivableStrategy implements ReactionStrategy {
 }
 
 /**
- * @internal
  * Reaction strategy for DerivableProxy values.
  */
 export class DerivableProxyStrategy implements ReactionStrategy {

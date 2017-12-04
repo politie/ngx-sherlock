@@ -34,17 +34,7 @@ module.exports = function (config) {
         colors: true,
         logLevel: config.LOG_INFO,
         autoWatch: true,
-        customLaunchers: {
-            ChromeHeadless: {
-                base: 'Chrome',
-                flags: [
-                    '--headless',
-                    '--disable-gpu',
-                    '--remote-debugging-port=9222'
-                ]
-            }
-        },
-        browsers: ['ChromeHeadless'],
+        browsers: ['Chrome'],
         singleRun: false,
         webpackServer: { noInfo: true }
     };

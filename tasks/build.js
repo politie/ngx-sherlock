@@ -31,11 +31,15 @@ const complete = (depth = 0) => {
     const spaces = ' '.repeat(depth);
     console.info(colorize.colorize(`${spaces}> Complete`, 'green'));
 };
-const compileCode = () => Promise.all([2015, 5].map((type) => {
-    const exitCode = ngc(['-p', path.resolve(rootDir, `tsconfig.es${type}.json`)]);
-    exitCode === 0 ? Promise.resolve() : Promise.reject(`Angular compilation failed with exit code ${exitCode}`);
-}));
-
+const compileCode = () => Promise.all([2015, 5].map((type) =>
+    new Promise((resolve, reject) => {
+        resolve(ngc(['-p', path.resolve(rootDir, `tsconfig.es${type}.json`)], error => {
+            if (error) {
+                reject(error);
+            }
+        }));
+    })
+));
 const copyMetadata = () =>
     copyGlobs(['**/*.d.ts', '**/*.metadata.json'], es2015Dir, distDir);
 const copyPackageFiles = () =>

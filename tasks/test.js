@@ -25,6 +25,9 @@ function getConfig(type) {
         case 'watch':
         case 'w':
             return getWatchConfig();
+        case 'browser':
+        case 'b':
+            return getBrowserConfig();
         default:
             return getSingleConfig();
     }
@@ -35,6 +38,12 @@ function getSingleConfig() {
 
     config.singleRun = true;
 
+    return config;
+}
+
+function getBrowserConfig() {
+    let config = getWatchConfig();
+    config.browsers = ['Chrome'];
     return config;
 }
 
@@ -49,7 +58,7 @@ function getHeadlessConfig() {
 function getWatchConfig() {
     let config = getAllConfig(true);
 
-    config.browsers = ['Chrome'];
+    config.browsers = ['ChromeHeadless'];
 
     return config;
 }

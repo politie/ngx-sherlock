@@ -8,17 +8,17 @@ import { autoDetectChanges } from './auto-detect-changes';
 
 describe('change detection', () => {
     describe('autoDetectChanges', () => {
-        let fixture: ComponentFixture<TestCpt>;
-        let component: TestCpt;
+        let fixture: ComponentFixture<TestComponent>;
+        let component: TestComponent;
         let detectChangesSpy: jasmine.Spy;
         let onDestroySpy: jasmine.Spy;
 
         beforeEach(() => {
-            TestBed.configureTestingModule({ imports: [CommonModule], declarations: [TestCpt] }).compileComponents();
+            TestBed.configureTestingModule({ imports: [CommonModule], declarations: [TestComponent] }).compileComponents();
         });
 
         beforeEach(() => {
-            fixture = TestBed.createComponent(TestCpt);
+            fixture = TestBed.createComponent(TestComponent);
             component = fixture.componentInstance;
             detectChangesSpy = spyOn(component.cdr, 'detectChanges').and.callThrough();
             onDestroySpy = spyOn(component.cdr as any, 'onDestroy').and.callThrough();
@@ -119,7 +119,7 @@ describe('change detection', () => {
     `,
     changeDetection: ChangeDetectionStrategy.OnPush,
 })
-class TestCpt implements OnInit {
+class TestComponent implements OnInit {
     readonly state$ = atom('my value');
     readonly proxyState$ = new ProxyDescriptor().$create(this.state$.lens({
         get: v => v.toUpperCase(),
@@ -138,6 +138,6 @@ class TestCpt implements OnInit {
     }
 }
 
-function getH1Text(fixture: ComponentFixture<TestCpt>): string {
+function getH1Text(fixture: ComponentFixture<TestComponent>): string {
     return fixture.debugElement.query(By.css('h1')).nativeElement.textContent.trim();
 }
