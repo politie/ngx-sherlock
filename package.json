@@ -38,7 +38,7 @@
     "Merijn van der Linden <njirem@gmail.com>",
     "Wouter Spaak <w.spaak@gmail.com>"
   ],
-  "license": "ISC",
+  "license": "Apache-2.0",
   "bugs": {
     "url": "https://github.com/politie/ngx-sherlock/issues"
   },
