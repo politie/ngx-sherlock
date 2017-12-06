@@ -12,11 +12,7 @@
         "declaration": true,
         "emitDecoratorMetadata": true,
         "experimentalDecorators": true,
-        "skipLibCheck": true,
-        "lib": [
-            "es2015",
-            "dom"
-        ],
+        "lib": ["es2015", "dom"],
         "module": "es2015",
         "moduleResolution": "node",
         "outDir": "./out-tsc/lib-es2015/",

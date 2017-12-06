@@ -2,7 +2,6 @@ import { Type } from '@angular/core';
 import { BaseError } from '@politie/informant';
 
 /**
- * @internal
  * Error thrown when an invalid argument has been provided to a pipe.
  */
 export class InvalidPipeArgumentError extends BaseError {
