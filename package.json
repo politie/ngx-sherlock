@@ -101,7 +101,7 @@
   "es2015": "./@politie/ngx-sherlock.js",
   "author": "",
   "dependencies": {
-    "@angular/common": "^4.0.0",
+    "@angular/common": "^5.1.0",
     "@angular/compiler": "^4.0.0",
     "@angular/core": "^4.0.0",
     "@angular/platform-browser": "^4.0.0",
