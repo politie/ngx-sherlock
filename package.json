@@ -44,7 +44,7 @@
   },
   "homepage": "https://github.com/politie/ngx-sherlock#readme",
   "devDependencies": {
-    "@angular/compiler-cli": "^4.0.0",
+    "@angular/compiler-cli": "^5.1.0",
     "@politie/sherlock-proxy": "^1.0.0-beta.0",
     "@types/jasmine": "2.5.38",
     "@types/node": "^6.0.42",
