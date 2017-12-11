@@ -20,7 +20,7 @@
     "integration": "npm-run-all -s integration:*",
     "integration:pack": "cd dist && npm pack",
     "integration:prepare": "rimraf integration/node_modules && mv dist/*.tgz integration/politie-ngx-sherlock.tgz",
-    "integration:install": "cd integration && npm i && npm i ./politie-ngx-sherlock.tgz",
+    "integration:install": "cd integration && rimraf package-lock.json && npm i && npm i ./politie-ngx-sherlock.tgz",
     "integration:test": "cd integration && npm run test"
   },
   "repository": {
