@@ -11,9 +11,9 @@ jobs:
       - checkout
 
       # Download and cache dependencies
-      - restore_cache:
-          keys:
-          - v1-dependencies-{{ checksum "package-lock.json" }}
+      # - restore_cache:
+      #     keys:
+      #     - v1-dependencies-{{ checksum "package-lock.json" }}
 
       # There's a bug in npm 5.5.* with directories with an @-symbol. See: https://github.com/npm/npm/issues/18982
       - run:
@@ -29,10 +29,10 @@ jobs:
 
       - run: npm install
 
-      - save_cache:
-          paths:
-            - node_modules
-          key: v1-dependencies-{{ checksum "package-lock.json" }}
+      # - save_cache:
+      #     paths:
+      #       - node_modules
+      #     key: v1-dependencies-{{ checksum "package-lock.json" }}
 
       # run tests!
       - run: npm run ci:circle
