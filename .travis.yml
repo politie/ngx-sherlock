@@ -4,6 +4,9 @@ node_js:
   - "7"
   - "8"
   - "node"
+before_install:
+  # There's a bug in npm 5.5.* with directories with an @-symbol. See: https://github.com/npm/npm/issues/18982
+  - npm i -g npm@5.6.0
 script: npm run ci:travis
 cache:
   directories:
