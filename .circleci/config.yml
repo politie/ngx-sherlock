@@ -20,7 +20,7 @@ jobs:
           name: "Checking versions"
           command: |
             node --version
-            npm --verson
+            npm --version
 
       - run:
           name: "Forcing npm update"
