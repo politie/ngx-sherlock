@@ -12,7 +12,7 @@ module.exports = function (config) {
             { pattern: './src/test.js', watched: false }
         ],
         mime: {
-            'text/x-typescript': ['ts','tsx']
+            'text/x-typescript': ['ts', 'tsx']
         },
         plugins: [
             'karma-chrome-launcher',
@@ -35,7 +35,7 @@ module.exports = function (config) {
         colors: true,
         logLevel: config.LOG_INFO,
         autoWatch: true,
-        browsers: ['Chrome', 'PhantomJS'],
+        browsers: ['Chrome', 'ChromeHeadless'],
         singleRun: false,
         webpackServer: { noInfo: true }
     };

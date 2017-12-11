@@ -6,7 +6,7 @@ const Server = require('karma').Server;
 
 function run(type) {
     const config = getConfig(type);
-    const server = new Server(config, function(exitCode) {
+    const server = new Server(config, function (exitCode) {
         process.exit(exitCode);
     });
 
@@ -41,7 +41,7 @@ function getSingleConfig() {
 function getHeadlessConfig() {
     let config = getAllConfig();
 
-    config.browsers = ['PhantomJS'];
+    config.browsers = ['ChromeHeadless'];
 
     return config;
 }

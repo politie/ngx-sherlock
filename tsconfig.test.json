@@ -3,7 +3,11 @@
     "compilerOptions": {
         "emitDecoratorMetadata": true,
         "experimentalDecorators": true,
-        "lib": ["es2015", "dom"],
+        "skipLibCheck": true,
+        "lib": [
+            "es2015",
+            "dom"
+        ],
         "module": "commonjs",
         "moduleResolution": "node",
         "removeComments": false,

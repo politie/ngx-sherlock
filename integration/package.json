@@ -21,7 +21,7 @@
     "@angular/platform-browser": "^5.0.0",
     "@angular/platform-browser-dynamic": "^5.0.0",
     "@angular/router": "^5.0.0",
-    "@politie/ngx-sherlock": "file:politie-ngx-sherlock.tgz",
+    "@politie/ngx-sherlock": "file:../dist/politie-ngx-sherlock-1.0.0-beta.6.tgz",
     "@politie/sherlock": "^1.0.0-beta.2",
     "@politie/sherlock-proxy": "^1.0.0-beta.2",
     "core-js": "^2.4.1",
