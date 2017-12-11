@@ -21,7 +21,7 @@ const es5Dir = path.resolve(tscDir, 'lib-es5');
 const es2015Dir = path.resolve(tscDir, 'lib-es2015');
 
 const runPromise = (message, fn) => {
-    return function () {
+    return function() {
         console.info(colorize.colorize(message, 'cyan'));
         return fn().then(complete);
     };
@@ -29,12 +29,13 @@ const runPromise = (message, fn) => {
 
 const complete = (depth = 0) => {
     const spaces = ' '.repeat(depth);
-    console.info(colorize.colorize(`${spaces}> Complete`, 'green'));
+    console.info(colorize.colorize(`${ spaces }> Complete`, 'green'));
 };
-const compileCode = () => Promise.all([5, 2015].map(type =>
-    ngc({ project: path.resolve(rootDir, `tsconfig.es${type}.json`) })
-        .then(exitCode =>
-            exitCode === 0 ? Promise.resolve() : Promise.reject())
+const compileCode = () => Promise.all([2015, 5].map((type) =>
+    ngc({ project: path.resolve(rootDir, `tsconfig.es${ type }.json`)})
+        .then((exitCode) =>
+            exitCode === 0 ? Promise.resolve() : Promise.reject()
+        )
 ));
 const copyMetadata = () =>
     copyGlobs(['**/*.d.ts', '**/*.metadata.json'], es2015Dir, distDir);
@@ -43,7 +44,7 @@ const copyPackageFiles = () =>
         .then(() => {
             const contents = fs.readFileSync(path.resolve(distDir, 'package.json'), 'utf8');
 
-            return fs.writeFileSync(path.resolve(distDir, 'package.json'), contents.replace('"dependencies":', '"peerDependencies":'));
+            return fs.writeFileSync(path.resolve(distDir, 'package.json'),  contents.replace('"dependencies":', '"peerDependencies":'));
         });
 const copySource = () => copyGlobs('**/*', srcDir, buildDir);
 const doInlining = () => inlineResources(buildDir, 'src');

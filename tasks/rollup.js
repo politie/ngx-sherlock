@@ -9,8 +9,6 @@ const rollupCommon = require('rollup-plugin-commonjs');
 const rollupNodeResolve = require('rollup-plugin-node-resolve');
 const rollupSourcemaps = require('rollup-plugin-sourcemaps');
 const rollupUglify = require('rollup-plugin-uglify');
-const builtins = require('rollup-plugin-node-builtins');
-const nodeGlobals = require('rollup-plugin-node-globals');
 
 const doRollup = (libName, dirs) => {
     const nameParts = extractName(libName);
@@ -21,7 +19,7 @@ const doRollup = (libName, dirs) => {
         entry: es5Entry,
         external: [
             '@angular/common',
-            '@angular/core'
+            '@angular/core',
         ],
         globals: {
             '@angular/common': 'ng.common',
@@ -35,13 +33,11 @@ const doRollup = (libName, dirs) => {
             }
         },
         plugins: [
-            builtins(),
             rollupNodeResolve({
                 jsnext: true,
-                module: true,
+                module: true
             }),
-            nodeGlobals(),
-            rollupSourcemaps(),
+            rollupSourcemaps()
         ],
         sourceMap: true
     }, dirs.root);
