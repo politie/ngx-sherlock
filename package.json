@@ -1,7 +1,7 @@
 {
   "name": "@politie/ngx-sherlock",
-  "version": "1.0.0-beta.4",
-  "description": "NgxSherlock is a library with angular bindings for the Sherlock reacive state library.",
+  "version": "1.0.0-beta.6",
+  "description": "NgxSherlock is a library with angular bindings for the Sherlock reactive state library.",
   "private": false,
   "main": "./bundles/ngx-sherlock.umd.js",
   "typings": "./ngx-sherlock.d.ts",
@@ -15,8 +15,13 @@
     "prebuild": "rimraf dist out-tsc",
     "start": "webpack-dev-server --open --config ./webpack/webpack.dev.js",
     "tagVersion": "np --no-publish",
-    "ci:travis": "npm run build && cat coverage/lcov.info | node_modules/.bin/coveralls",
-    "ci:circle": "npm run build"
+    "ci:travis": "npm run build && npm run integration && cat coverage/lcov.info | node_modules/.bin/coveralls",
+    "ci:circle": "npm run build",
+    "integration": "npm-run-all -s integration:*",
+    "integration:pack": "cd dist && npm pack",
+    "integration:prepare": "rimraf integration/node_modules && mv dist/*.tgz integration/politie-ngx-sherlock.tgz",
+    "integration:install": "cd integration && npm i && npm i ./politie-ngx-sherlock.tgz",
+    "integration:test": "cd integration && npm run test"
   },
   "repository": {
     "type": "git",
