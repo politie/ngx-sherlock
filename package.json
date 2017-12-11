@@ -16,7 +16,7 @@
     "start": "webpack-dev-server --open --config ./webpack/webpack.dev.js",
     "tagVersion": "np --no-publish",
     "ci:travis": "npm run build && npm run integration && cat coverage/lcov.info | node_modules/.bin/coveralls",
-    "ci:circle": "npm run build",
+    "ci:circle": "npm run build && npm run integration",
     "integration": "npm-run-all -s integration:*",
     "integration:pack": "cd dist && npm pack",
     "integration:prepare": "rimraf integration/node_modules && mv dist/*.tgz integration/politie-ngx-sherlock.tgz",
