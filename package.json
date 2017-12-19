@@ -48,7 +48,7 @@
     "@politie/sherlock-proxy": "^1.0.0-beta.0",
     "@types/jasmine": "2.5.38",
     "@types/node": "^6.0.42",
-    "angular-librarian": "1.0.0-beta.14",
+    "angular-librarian": "1.0.0",
     "angular2-template-loader": "0.6.0",
     "awesome-typescript-loader": "^3.0.0",
     "codelyzer": "~3.0.0",
