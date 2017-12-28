@@ -46,7 +46,7 @@
   "devDependencies": {
     "@angular/compiler-cli": "^4.0.0",
     "@politie/sherlock-proxy": "^1.0.0-beta.0",
-    "@types/jasmine": "2.5.38",
+    "@types/jasmine": "2.8.3",
     "@types/node": "^6.0.42",
     "angular-librarian": "1.0.0-beta.14",
     "angular2-template-loader": "0.6.0",
