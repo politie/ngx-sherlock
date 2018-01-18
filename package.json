@@ -51,7 +51,7 @@
     "angular-librarian": "1.0.0-beta.14",
     "angular2-template-loader": "0.6.0",
     "awesome-typescript-loader": "^3.0.0",
-    "codelyzer": "~3.0.0",
+    "codelyzer": "~4.1.0",
     "coveralls": "^3.0.0",
     "css-loader": "^0.26.1",
     "css-to-string-loader": "^0.1.3",
