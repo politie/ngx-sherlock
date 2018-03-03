@@ -91,7 +91,7 @@
     "tslint-loader": "^3.0.0",
     "typescript": "^2.6.2",
     "typings": "^0.8.1",
-    "url-loader": "^0.5.7",
+    "url-loader": "^1.0.0",
     "webpack": "^2.2.0",
     "webpack-dev-server": "^2.2.0",
     "webpack-merge": "^0.14.0",
