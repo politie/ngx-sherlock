@@ -4,6 +4,9 @@ node_js:
   - "7"
   - "8"
   - "node"
+sudo: required
+addons:
+  chrome: stable
 script: npm run ci:travis
 cache:
   directories:
