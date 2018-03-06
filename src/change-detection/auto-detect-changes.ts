@@ -16,7 +16,7 @@ export function autoDetectChanges(detector: ChangeDetectorRef) {
             detector.detectChanges();
         } catch (error) {
             detector.detach();
-            throw new Error(error);
+            throw error;
         }
     }).react(() => void 0));
 }

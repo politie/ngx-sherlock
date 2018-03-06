@@ -34,7 +34,7 @@ describe('change detection', () => {
 
         it('should rethrow when #detectChanges errors', () => {
             detectChangesSpy.and.callFake(() => { throw new Error('error in change detection'); });
-            expect(() => component.state$.set('this should error')).toThrowError('Error: error in change detection');
+            expect(() => component.state$.set('this should error')).toThrowError('error in change detection');
             expect(detachSpy).toHaveBeenCalled();
         });
 
