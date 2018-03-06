@@ -1,6 +1,6 @@
 {
   "name": "@politie/ngx-sherlock",
-  "version": "1.0.0-beta.4",
+  "version": "1.0.0-beta.5",
   "description": "NgxSherlock is a library with angular bindings for the Sherlock reacive state library.",
   "private": false,
   "main": "./bundles/ngx-sherlock.umd.js",
