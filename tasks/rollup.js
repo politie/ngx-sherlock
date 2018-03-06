@@ -9,8 +9,8 @@ const rollupCommon = require('rollup-plugin-commonjs');
 const rollupNodeResolve = require('rollup-plugin-node-resolve');
 const rollupSourcemaps = require('rollup-plugin-sourcemaps');
 const rollupUglify = require('rollup-plugin-uglify');
-const builtins = require('rollup-plugin-node-builtins');
-const nodeGlobals = require('rollup-plugin-node-globals');
+
+const rollupGlobals = require('./rollup-globals');
 
 const doRollup = (libName, dirs) => {
     const nameParts = extractName(libName);
@@ -18,16 +18,10 @@ const doRollup = (libName, dirs) => {
     const es2015Entry = path.resolve(dirs.es2015, `${nameParts.package}.js`);
     const destinations = generateDestinations(dirs.dist, nameParts);
     const baseConfig = generateConfig({
-        entry: es5Entry,
-        external: [
-            '@angular/common',
-            '@angular/core'
-        ],
-        globals: {
-            '@angular/common': 'ng.common',
-            '@angular/core': 'ng.core'
-        },
-        moduleName: librarianUtils.caseConvert.dashToCamel(nameParts.package),
+        input: es5Entry,
+        external: Object.keys(rollupGlobals),
+        globals: rollupGlobals,
+        name: librarianUtils.caseConvert.dashToCamel(nameParts.package),
         onwarn: function rollupOnWarn(warning) {
             // keeps TypeScript this errors down
             if (warning.code !== 'THIS_IS_UNDEFINED') {
@@ -35,33 +29,39 @@ const doRollup = (libName, dirs) => {
             }
         },
         plugins: [
-            builtins(),
             rollupNodeResolve({
                 jsnext: true,
-                module: true,
+                module: true
             }),
-            nodeGlobals(),
-            rollupSourcemaps(),
+            rollupSourcemaps()
         ],
-        sourceMap: true
+        sourcemap: true
     }, dirs.root);
     const fesm2015Config = Object.assign({}, baseConfig, {
-        entry: es2015Entry,
-        dest: destinations.fesm2015,
-        format: 'es'
+        input: es2015Entry,
+        output: {
+            file: destinations.fesm2015,
+            format: 'es'
+        }
     });
     const fesm5Config = Object.assign({}, baseConfig, {
-        dest: destinations.fesm5,
-        format: 'es'
+        output: {
+            file: destinations.fesm5,
+            format: 'es'
+        }
     });
     const minUmdConfig = Object.assign({}, baseConfig, {
-        dest: destinations.minUmd,
-        format: 'umd',
+        output: {
+            file: destinations.minUmd,
+            format: 'umd'
+        },
         plugins: baseConfig.plugins.concat([rollupUglify({})])
     });
     const umdConfig = Object.assign({}, baseConfig, {
-        dest: destinations.umd,
-        format: 'umd'
+        output: {
+            file: destinations.umd,
+            format: 'umd'
+        }
     });
 
     const bundles = [
@@ -69,10 +69,13 @@ const doRollup = (libName, dirs) => {
         fesm5Config,
         minUmdConfig,
         umdConfig
-    ].map((config) =>
-        rollup.rollup(config).then((bundle) =>
-            bundle.write(config)
-        )
+    ].map(config =>
+        rollup.rollup(config)
+            .then(bundle => bundle.write({
+                file: config.output.file,
+                format: config.output.format,
+                ...config
+            }))
         );
 
     return Promise.all(bundles);

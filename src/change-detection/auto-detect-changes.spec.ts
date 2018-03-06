@@ -12,6 +12,7 @@ describe('change detection', () => {
         let component: TestComponent;
         let detectChangesSpy: jasmine.Spy;
         let onDestroySpy: jasmine.Spy;
+        let detachSpy: jasmine.Spy;
 
         beforeEach(() => {
             TestBed.configureTestingModule({ imports: [CommonModule], declarations: [TestComponent] }).compileComponents();
@@ -22,12 +23,19 @@ describe('change detection', () => {
             component = fixture.componentInstance;
             detectChangesSpy = spyOn(component.cdr, 'detectChanges').and.callThrough();
             onDestroySpy = spyOn(component.cdr as any, 'onDestroy').and.callThrough();
+            detachSpy = spyOn(component.cdr as any, 'detach').and.callThrough();
 
             fixture.detectChanges();
         });
 
         it('should throw when no ChangeDetectorRef is provided', () => {
             expect(() => autoDetectChanges({} as any)).toThrowError(`autoDetectChanges was not called with a valid ChangeDetectorRef.`);
+        });
+
+        it('should rethrow when #detectChanges errors', () => {
+            detectChangesSpy.and.callFake(() => { throw new Error('error in change detection'); });
+            expect(() => component.state$.set('this should error')).toThrowError('Error: error in change detection');
+            expect(detachSpy).toHaveBeenCalled();
         });
 
         it('should have registered a reaction destroying function with the ChangeDetectorRef', () => {

@@ -12,11 +12,12 @@ module.exports = function (config) {
             { pattern: './src/test.js', watched: false }
         ],
         mime: {
-            'text/x-typescript': ['ts', 'tsx']
+            'text/x-typescript': ['ts','tsx']
         },
         plugins: [
             'karma-chrome-launcher',
             'karma-jasmine',
+            'karma-phantomjs-launcher',
             'karma-coverage-istanbul-reporter',
             'karma-sourcemap-loader',
             'karma-webpack'
@@ -34,7 +35,7 @@ module.exports = function (config) {
         colors: true,
         logLevel: config.LOG_INFO,
         autoWatch: true,
-        browsers: ['Chrome'],
+        browsers: ['Chrome', 'PhantomJS'],
         singleRun: false,
         webpackServer: { noInfo: true }
     };
