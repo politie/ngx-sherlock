@@ -76,7 +76,7 @@ const doRollup = (libName, dirs) => {
                 format: config.output.format,
                 ...config
             }))
-        );
+    );
 
     return Promise.all(bundles);
 };
@@ -123,7 +123,6 @@ const generateConfig = (base, rootDir) => {
         const custom = require(customLocation);
         const external = (custom.external || []).filter((external) => base.external.indexOf(external) === -1);
         const includes = (custom.commonjs || []).filter((include) => commonjsIncludes.indexOf(include) === -1);
-
         base.external = base.external.concat(external);
         base.globals = erectorUtils.mergeDeep(custom.globals, base.globals);
         commonjsIncludes = commonjsIncludes.concat(includes);

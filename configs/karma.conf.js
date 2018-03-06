@@ -1,7 +1,5 @@
-module.exports = () => {
-    return {
-        config: {
-            browsers: ['ChromeHeadless']
-        }
+module.exports = {
+    config: {
+        browsers: ['ChromeHeadless']
     }
 }
