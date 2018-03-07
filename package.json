@@ -75,7 +75,7 @@
     "phantomjs-prebuilt": "^2.1.7",
     "raw-loader": "^0.5.1",
     "rimraf": "^2.5.3",
-    "rollup": "0.52.1",
+    "rollup": "0.56.5",
     "rollup-plugin-commonjs": "^8.4.1",
     "rollup-plugin-node-builtins": "^2.1.2",
     "rollup-plugin-node-globals": "^1.1.0",
