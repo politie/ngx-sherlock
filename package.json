@@ -5,14 +5,14 @@
         "ng": "ng",
         "start": "ng serve",
         "build": "ng build",
+        "build:lib": "ng build lib",
         "build:test-integration": "ng test ngx-sherlock --browsers ChromeHeadless",
         "build:test": "ng test lib --code-coverage --browsers ChromeHeadless",
-        "build:lib": "ng build lib",
         "test": "ng test",
         "lint": "ng lint",
         "e2e": "ng e2e",
-        "ci:travis": "npm-run-all build:* && cat coverage/lcov.info | node_modules/.bin/coveralls",
-        "ci:circle": "npm-run-all build:*"
+        "ci:travis": "npm-run-all -s build:* && cat coverage/lcov.info | node_modules/.bin/coveralls",
+        "ci:circle": "npm-run-all -s build:*"
     },
     "private": false,
     "dependencies": {
