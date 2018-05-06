@@ -5,6 +5,7 @@
         "ng": "ng",
         "start": "ng serve",
         "build": "ng build",
+        "build:test-integration": "ng test ngx-sherlock --browsers ChromeHeadless",
         "build:test": "ng test lib --code-coverage --browsers ChromeHeadless",
         "build:lib": "ng build lib",
         "test": "ng test",
