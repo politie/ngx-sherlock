@@ -1,0 +1,14 @@
+<mat-card>
+    <mat-card-content>
+        <p>Unpacking a derivable with
+            <code>ValuePipe</code>
+        </p>
+        <p id="title">{{ derivedTitle$ | value }}</p>
+    </mat-card-content>
+    <mat-card-actions>
+        <button mat-button
+                (click)="setNumber(-1)">REMOVE ONE</button>
+        <button mat-button
+                (click)="setNumber(1)">ADD ONE</button>
+    </mat-card-actions>
+</mat-card>
