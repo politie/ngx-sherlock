@@ -95,7 +95,7 @@
     "url-loader": "^0.6.2",
     "webpack": "^3.0.0",
     "webpack-dev-server": "^2.11.2",
-    "webpack-merge": "^0.14.0",
+    "webpack-merge": "^4.1.3",
     "webpack-node-externals": "^1.5.4"
   },
   "module": "./@politie/ngx-sherlock.es5.js",
