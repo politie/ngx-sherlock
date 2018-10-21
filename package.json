@@ -93,7 +93,7 @@
     "typescript": "~2.7.2",
     "typings": "^0.8.1",
     "url-loader": "^0.6.2",
-    "webpack": "^3.0.0",
+    "webpack": "^4.22.0",
     "webpack-dev-server": "^2.11.2",
     "webpack-merge": "^0.14.0",
     "webpack-node-externals": "^1.5.4"
