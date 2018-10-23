@@ -1,0 +1,15 @@
+{
+    "name": "@politie/ngx-sherlock",
+    "version": "2.0.0-alpha.0",
+    "peerDependencies": {
+        "@angular/common": "^6.0.0-rc.0 || ^6.0.0",
+        "@angular/core": "^6.0.0-rc.0 || ^6.0.0",
+        "@politie/sherlock": "^2.0.0-rc.1 || ^2.0.0"
+    },
+    "contributors": [
+        "Paco van der Linden <pavadeli@gmail.com>",
+        "Wilfred van der Deijl <wilfred@vanderdeijl.com>",
+        "Merijn van der Linden <njirem@gmail.com>",
+        "Wouter Spaak <w.spaak@gmail.com>"
+    ]
+}

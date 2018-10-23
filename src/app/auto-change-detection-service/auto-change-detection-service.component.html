@@ -1,0 +1,5 @@
+<h2>Using auto change detection service</h2>
+<p>Time is: <time>{{ clock.baseClock$.value }}</time> (updating every second)</p>
+<p>
+    <label for="interval">Interval: </label><input type="number" name="interval" id="interval" [(ngModel)]="clock.seconds$.value"> seconds</p>
+<p>Time is: <time>{{ clock.intervalClock$.value }}</time> (updating every {{ clock.seconds$.value }} second(s))</p>

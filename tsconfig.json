@@ -1,28 +1,35 @@
 {
-    "angularCompilerOptions": {
-        "strictMetadataEmit": true,
-        "skipTemplateCodegen": true
-    },
+    "compileOnSave": false,
     "compilerOptions": {
-        "baseUrl": "",
-        "declaration": true,
-        "emitDecoratorMetadata": true,
-        "experimentalDecorators": true,
-        "lib": ["es2015", "dom"],
-        "mapRoot": "./",
+        "baseUrl": "./",
+        "outDir": "./dist/out-tsc",
+        "sourceMap": true,
+        "declaration": false,
         "module": "es2015",
         "moduleResolution": "node",
-        "outDir": "./dist",
-        "sourceMap": true,
+        "emitDecoratorMetadata": true,
+        "experimentalDecorators": true,
         "target": "es5",
+        "strict": true,
+        "noImplicitAny": true,
+        "noImplicitReturns": true,
+        "noUnusedLocals": true,
+        "noUnusedParameters": true,
+        "importHelpers": true,
         "typeRoots": [
-            "./node_modules/@types"
-        ]
-    },
-    "files": [
-        "./src/index.ts"
-    ],
-    "awesomeTypescriptLoaderOptions": {
-        "forkChecker": true
+            "node_modules/@types"
+        ],
+        "lib": [
+            "es2017",
+            "dom"
+        ],
+        "paths": {
+            "@politie/ngx-sherlock": [
+                "dist/politie/ngx-sherlock"
+            ],
+            "@politie/ngx-sherlock/*": [
+                "dist/politie/ngx-sherlock/*"
+            ]
+        }
     }
 }
