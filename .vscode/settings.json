@@ -1,0 +1,7 @@
+{
+    "editor.formatOnSave": true,
+    "tslint.autoFixOnSave": true,
+    "html.format.wrapAttributes": "aligned-multiple",
+    "html.format.wrapLineLength": 150,
+    "typescript.tsdk": "node_modules/typescript/lib"
+}

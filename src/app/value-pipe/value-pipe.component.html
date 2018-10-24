@@ -1,0 +1,6 @@
+<h2>Using <code>value</code> pipe</h2>
+<p>Time is: <time>{{ clock.baseClock$ | value }}</time> (updating every second)</p>
+<p>
+    <label for="interval">Interval: </label><input type="number" name="interval" id="interval" [ngModel]="clock.seconds$ | value" (ngModelChange)="clock.seconds$.value = $event">
+    seconds</p>
+<p>Time is: <time>{{ clock.intervalClock$ | value }}</time> (updating every {{ clock.seconds$ | value }} second(s))</p>
