@@ -41,7 +41,7 @@ export class AutoChangeDetectorService {
     constructor(private readonly detector: ChangeDetectorRef) {
         if (!hasOnDestroy(detector)) {
             // Incompatible Angular version?
-            throw new Error(`Incompatible ChangeDetectorRef`);
+            throw new Error(`The method 'onDestroy' was not found on the provided ChangeDetectorRef. AutoChangeDetectorService will not work correctly.`);
         }
         detector.onDestroy(() => this[symbols.disconnect]());
         detector.detach();
