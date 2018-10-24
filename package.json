@@ -12,6 +12,7 @@
         "test": "ng test @politie/ngx-sherlock",
         "lint": "ng lint",
         "e2e": "ng e2e",
+        "ci:circle": "npm-run-all build",
         "ci:travis": "npm-run-all build ci:coveralls",
         "ci:coveralls": "cat coverage/lcov.info | node_modules/.bin/coveralls"
     },

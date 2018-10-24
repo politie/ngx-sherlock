@@ -51,7 +51,7 @@ describe('AutoChangeDetectorService', () => {
 
     it('should throw when not given a ViewRef as ChangeDetectorRef', () => {
         const changeDetectorRef = jasmine.createSpyObj<ChangeDetectorRef>('changeDetectorRef', ['detach']);
-        expect(() => new AutoChangeDetectorService(changeDetectorRef)).toThrowError('Incompatible ChangeDetectorRef');
+        expect(() => new AutoChangeDetectorService(changeDetectorRef)).toThrowError(/AutoChangeDetectorService will not work correctly/);
     });
 
     it('should not start the auto change detection until after a tick', () => {
