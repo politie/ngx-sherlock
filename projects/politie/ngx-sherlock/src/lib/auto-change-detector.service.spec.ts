@@ -44,7 +44,7 @@ describe('AutoChangeDetectorService', () => {
     it('should detach the change detector immediately and start the auto change detection after a tick', () => {
         // Spy is installed after creation of component, so we simply create a new instance of the service to test this
         // behavior.
-        const changeDetectorRef = jasmine.createSpyObj<ChangeDetectorRef>('changeDetectorRef', ['detach', 'onDestroy']);
+        const changeDetectorRef = jasmine.createSpyObj<ChangeDetectorRef>('changeDetectorRef', ['detach', 'onDestroy'] as any);
         new AutoChangeDetectorService(changeDetectorRef);
         expect(changeDetectorRef.detach).toHaveBeenCalled();
     });
