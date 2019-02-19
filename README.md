@@ -1,7 +1,7 @@
 # Ngx Sherlock
 
 [![Greenkeeper badge](https://badges.greenkeeper.io/politie/ngx-sherlock.svg)](https://greenkeeper.io/)
-[![Coverage Status](https://coveralls.io/repos/github/politie/ngx-sherlock/badge.svg?branch=master)](https://coveralls.io/github/politie/sherlock?branch=master)
+[![Coverage Status](https://coveralls.io/repos/github/politie/ngx-sherlock/badge.svg?branch=master)](https://coveralls.io/github/politie/ngx-sherlock?branch=master)
 
 **NgxSherlock** is a set of Angular bindings for the [Sherlock](https://github.com/politie/sherlock)
  reactive state management library.
