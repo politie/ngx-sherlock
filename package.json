@@ -29,6 +29,7 @@
         "@angular/router": "^7.2.4",
         "@politie/sherlock": "^2.0.0-rc.2",
         "@politie/sherlock-proxy": "^2.0.0-rc.2",
+        "@politie/sherlock-rxjs": "^2.0.0-rc.2",
         "core-js": "^2.6.5",
         "rxjs": "~6.4.0",
         "zone.js": "~0.8.29"
