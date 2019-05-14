@@ -32,14 +32,19 @@ describe('DerivableQueryList', () => {
         fixture.detectChanges();
     });
 
-    it('resolve after initialized', () => {
+    it('should be resolve after initialization', () => {
         expect(componentInstance.paragraphs$.resolved).toBeFalsy();
-        componentInstance.paragraphs$.markInitialized();
         componentInstance.paragraphs$.markInitialized();
         expect(componentInstance.paragraphs$.resolved).toBeTruthy();
     });
 
-    it('derive the viewChildrens', () => {
+    it('should be not to throw if called twice', () => {
+        expect(componentInstance.paragraphs$.resolved).toBeFalsy();
+        componentInstance.paragraphs$.markInitialized();
+        expect(componentInstance.paragraphs$.resolved).toBeTruthy();
+    });
+
+    it('should expose the viewChildren in a Derivable', () => {
         componentInstance.paragraphs$.markInitialized();
         expect(componentInstance.paragraphs$.get().length).toEqual(1);
 
@@ -59,19 +64,19 @@ describe('DerivableQueryList', () => {
 
     });
 
-    it('derive the viewChildrens when used inside a derivation', () => {
-        let paragraphs: any;
-        componentInstance.paragraphs$.react(v => paragraphs = v);
+    it('should be able to react to changes in the viewChildren', () => {
+        let paragraphs!: number;
+        componentInstance.paragraphs$.react(v => paragraphs = v.length);
 
         componentInstance.paragraphs$.markInitialized();
-        expect(paragraphs.length).toEqual(1);
+        expect(paragraphs).toEqual(1);
 
         componentInstance.second = true;
         fixture.detectChanges();
-        expect(paragraphs.length).toEqual(2);
+        expect(paragraphs).toEqual(2);
 
         componentInstance.third = true;
         fixture.detectChanges();
-        expect(paragraphs.length).toEqual(3);
+        expect(paragraphs).toEqual(3);
     });
 });
