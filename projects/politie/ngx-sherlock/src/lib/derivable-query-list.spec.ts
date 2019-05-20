@@ -32,14 +32,15 @@ describe('DerivableQueryList', () => {
         fixture.detectChanges();
     });
 
-    it('should be resolve after initialization', () => {
+    it('should be resolved after initialization', () => {
         expect(componentInstance.paragraphs$.resolved).toBeFalsy();
         componentInstance.paragraphs$.markInitialized();
         expect(componentInstance.paragraphs$.resolved).toBeTruthy();
     });
 
-    it('should be not to throw if called twice', () => {
+    it('should not throw if called twice', () => {
         expect(componentInstance.paragraphs$.resolved).toBeFalsy();
+        componentInstance.paragraphs$.markInitialized();
         componentInstance.paragraphs$.markInitialized();
         expect(componentInstance.paragraphs$.resolved).toBeTruthy();
     });
