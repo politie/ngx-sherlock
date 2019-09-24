@@ -26,7 +26,7 @@
         "@angular/platform-browser": "^8.0.0",
         "@angular/platform-browser-dynamic": "^8.0.0",
         "@angular/router": "^8.0.0",
-        "@politie/sherlock": "^2.0.0-rc.2",
+        "@politie/sherlock": "^3.0.0",
         "@politie/sherlock-proxy": "^2.0.0-rc.2",
         "@politie/sherlock-rxjs": "^2.0.0-rc.2",
         "core-js": "^3.1.3",
