@@ -60,10 +60,9 @@ describe('AutoChangeDetectorService', () => {
     });
 
     describe('after init', () => {
-        beforeEach(async done => {
+        beforeEach(async () => {
             // Wait a tick.
             await Promise.resolve();
-            done();
         });
 
         it('should have started the auto change detection', () => {
