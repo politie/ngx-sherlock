@@ -17,6 +17,7 @@
         "ci:coveralls": "cat coverage/lcov.info | node_modules/.bin/coveralls"
     },
     "private": true,
+    "license": "Apache-2.0",
     "dependencies": {
         "@angular/animations": "^8.0.0",
         "@angular/common": "^8.0.0",
