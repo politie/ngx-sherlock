@@ -31,5 +31,8 @@
                 "dist/politie/ngx-sherlock/*"
             ]
         }
+    },
+    "angularCompilerOptions": {
+        "enableIvy": false
     }
 }
