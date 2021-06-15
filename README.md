@@ -1,7 +1,9 @@
 # Ngx Sherlock
 
-[![Greenkeeper badge](https://badges.greenkeeper.io/politie/ngx-sherlock.svg)](https://greenkeeper.io/)
-[![Coverage Status](https://coveralls.io/repos/github/politie/ngx-sherlock/badge.svg?branch=master)](https://coveralls.io/github/politie/ngx-sherlock?branch=master)
+[![CI](https://github.com/politie/ngx-sherlock/actions/workflows/build.yml/badge.svg)](https://github.com/politie/ngx-sherlock/actions/workflows/build.yml)
+[![Known Vulnerabilities](https://snyk.io/test/github/politie/ngx-sherlock/badge.svg)](https://snyk.io/test/github/politie/ngx-sherlock)
+[![npm version](https://img.shields.io/npm/v/@politie/ngx-sherlock)](https://www.npmjs.com/package/@politie/ngx-sherlock)
+[![license](https://img.shields.io/npm/l/@politie/ngx-sherlock?color=blue)](https://github.com/politie/ngx-sherlock/blob/main/LICENSE)
 
 **NgxSherlock** is a set of Angular bindings for the [Sherlock](https://github.com/politie/sherlock)
  reactive state management library.
@@ -13,7 +15,7 @@
 Install **NgxSherlock** by running:
 
 ```bash
-$ npm install @politie/ngx-sherlock
+npm install @politie/ngx-sherlock
 ```
 
 Add the `NgxSherlockModule` to your `AppModule`:
@@ -32,6 +34,7 @@ export class AppModule { }
 ### `autoDetectChanges`
 
 **Signature**:
+
 ```typescript
 class AutoChangeDetectorService {
     init(): Promise<void>;
@@ -47,6 +50,7 @@ The `AutoChangeDetectorService` service guarantees model and view fidelity, mean
 #### Example
 
 `trusty-sidekick.component.ts`:
+
 ```typescript
 import { Component, ChangeDetectionStrategy, ChangeDetectorRef, Input } from '@angular/core';
 import { AutoChangeDetectorService } from '@politie/ngx-sherlock';
@@ -109,12 +113,14 @@ performance.
 #### Example
 
 `my.component.html`:
+
 ```html
 <h1>My awesome counter</h1>
 <p>We're already at: <strong>{{ counter$ | value }}</strong></p>
 ```
 
 `my.component.ts`:
+
 ```typescript
 import { Component, OnInit, ChangeDetectionStrategy } from '@angular/core';
 import { atom } from '@politie/sherlock';

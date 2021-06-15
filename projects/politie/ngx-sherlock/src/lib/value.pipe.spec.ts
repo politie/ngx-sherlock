@@ -46,14 +46,14 @@ describe('ValuePipe', () => {
         it('should dispose of the existing reaction when reacting to a new derivable', () => {
             pipe.transform(emitter);
 
-            expect(getObservers(emitter).length).toBe(1, 'original emitter should have been observed');
+            expect(getObservers(emitter).length).withContext('original emitter should have been observed').toBe(1);
 
             const newEmitter = atom.unresolved();
             expect(pipe.transform(newEmitter)).toBe(undefined);
 
             emitter.set('newer value'); // this should not affect the pipe instance
-            expect(getObservers(emitter).length).toBe(0, 'original emitter should not have an observer anymore');
-            expect(getObservers(newEmitter).length).toBe(1, 'new emitter should have an observer');
+            expect(getObservers(emitter).length).withContext('original emitter should not have an observer anymore').toBe(0);
+            expect(getObservers(newEmitter).length).withContext('new emitter should have an observer').toBe(1);
         });
 
         it('should request a change detection check upon recieving a new value', () => {
@@ -74,10 +74,10 @@ describe('ValuePipe', () => {
 
         it('should unsubscribe on the derivable', () => {
             pipe.transform(emitter);
-            expect(getObservers(emitter).length).toBe(1, 'should have one observer');
+            expect(getObservers(emitter).length).withContext('should have one observer').toBe(1);
 
             pipe.ngOnDestroy();
-            expect(getObservers(emitter).length).toBe(0, 'should not have an observer anymore');
+            expect(getObservers(emitter).length).withContext('should not have an observer anymore').toBe(0);
         });
     });
 });
