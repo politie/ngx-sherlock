@@ -71,7 +71,7 @@ describe('AutoChangeDetectorService', () => {
         });
 
         it('should have registered an observer with the atom', () => {
-            expect(getObservers(componentInstance.state$).length).toBe(1, 'should have registered an observer');
+            expect(getObservers(componentInstance.state$).length).withContext('should have registered an observer').toBe(1);
         });
 
         it('should auto update debounced', fakeAsync(() => {
@@ -108,7 +108,7 @@ describe('AutoChangeDetectorService', () => {
             beforeEach(() => fixture.destroy());
 
             it('should stop the observation', () => {
-                expect(getObservers(componentInstance.state$).length).toBe(0, 'should have removed all observers');
+                expect(getObservers(componentInstance.state$).length).withContext('should have removed all observers').toBe(0);
             });
         });
     });
