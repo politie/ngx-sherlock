@@ -1,6 +1,15 @@
 <h2>Using <code>value</code> pipe</h2>
-<p>Time is: <time>{{ clock.baseClock$ | value }}</time> (updating every second)</p>
+<p>Time is: <time class="base-clock">{{ clock.baseClock$ | value }}</time> (updating every second)</p>
 <p>
-    <label for="interval">Interval: </label><input type="number" name="interval" id="interval" [ngModel]="clock.seconds$ | value" (ngModelChange)="clock.seconds$.value = $event">
-    seconds</p>
+    <label for="interval">Interval: </label><input type="number" name="interval" id="interval" [ngModel]="clock.seconds$ | value"
+           (ngModelChange)="clock.seconds$.value = $event">
+    seconds
+</p>
 <p>Time is: <time>{{ clock.intervalClock$ | value }}</time> (updating every {{ clock.seconds$ | value }} second(s))</p>
+<p>Proxy time is: <time class="base-clock">{{ clock.proxyClock.base | value }}</time> (updating every second)</p>
+<p>
+    <label for="interval">Proxy interval: </label><input type="number" name="interval" id="interval" [ngModel]="clock.proxyClock.seconds | value"
+           (ngModelChange)="clock.proxyClock.seconds.value = $event">
+    seconds
+</p>
+<p>Proxy time is: <time>{{ clock.proxyClock.intervalClock | value }}</time> (updating every {{ clock.proxyClock.seconds | value }} second(s))</p>

@@ -1,5 +1,6 @@
 import { Injectable, NgZone } from '@angular/core';
-import { atom, PullDataSource, unwrap } from '@politie/sherlock';
+import { atom, derive, PullDataSource, unwrap } from '@politie/sherlock';
+import { ProxyDescriptor } from '@politie/sherlock-proxy';
 
 class Clock extends PullDataSource<string> {
     constructor(readonly interval = 1000, private readonly zone: NgZone) { super(); }
@@ -33,4 +34,12 @@ export class ClockService {
     readonly intervalClock$ = this.interval$
         .derive(interval => new Clock(interval, this.zone))
         .derive(unwrap);
+
+    /** A Proxy version of the clock */
+    readonly proxyClock: any = new ProxyDescriptor().$create(derive(() => ({
+        base: this.baseClock$.get(),
+        interval: this.interval$.get(),
+        seconds: this.seconds$.get(),
+        intervalClock: this.intervalClock$.get(),
+    })));
 }

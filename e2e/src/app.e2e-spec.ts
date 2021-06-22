@@ -16,8 +16,10 @@ describe('workspace-project App', () => {
         page.navigateTo();
         const currentAutoCDTime = await page.getAutoCDClock();
         const currentPipeTime = await page.getPipeClock();
+        const currentProxyPipeTime = await page.getProxyPipeClock();
         await new Promise(resolve => setTimeout(resolve, 1000));
         expect(page.getAutoCDClock()).not.toEqual(currentAutoCDTime);
         expect(page.getPipeClock()).not.toEqual(currentPipeTime);
+        expect(page.getProxyPipeClock()).not.toEqual(currentProxyPipeTime);
     });
 });
