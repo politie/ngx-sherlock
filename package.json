@@ -1,6 +1,6 @@
 {
   "name": "ngx-sherlock-dev",
-  "version": "2.1.0",
+  "version": "2.2.0",
   "scripts": {
     "start": "FORCE_COLOR=1 npm-run-all -l -p watch:*",
     "watch:lib": "ng build @politie/ngx-sherlock --watch",
@@ -24,9 +24,9 @@
     "@angular/platform-browser": "^10.2.5",
     "@angular/platform-browser-dynamic": "^10.2.5",
     "@angular/router": "^10.2.5",
-    "@politie/sherlock": "^3.1.0",
-    "@politie/sherlock-proxy": "^3.1.0",
-    "@politie/sherlock-rxjs": "^3.1.0",
+    "@politie/sherlock": "^3.2.0",
+    "@politie/sherlock-proxy": "^3.2.0",
+    "@politie/sherlock-rxjs": "^3.2.0",
     "core-js": "^3.14.0",
     "rxjs": "^6.6.7",
     "tslib": "^2.0.0",
