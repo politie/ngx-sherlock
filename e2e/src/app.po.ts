@@ -14,6 +14,10 @@ export class AppPage {
     }
 
     getPipeClock() {
-        return element.all(by.css('app-value-pipe time')).first().getText();
+        return element.all(by.css('app-value-pipe time.base-clock')).first().getText();
+    }
+
+    getProxyPipeClock() {
+        return element.all(by.css('app-value-pipe time.base-clock')).last().getText();
     }
 }
