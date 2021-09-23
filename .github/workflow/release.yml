@@ -1,0 +1,48 @@
+name: 'CD: Release'
+
+on:
+  push:
+    tags: v*.*.*
+
+env:
+  node-version: 14.x
+
+jobs:
+  github-release:
+    name: Release on Github
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v2
+
+      - name: Release
+        uses: softprops/action-gh-release@v1
+        with:
+          token: ${{ secrets.WORKFLOW_GITHUB_TOKEN }}
+
+  npm-release:
+    name: Release on NPM
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v2
+
+      - name: Use node.js ${{ env.node-version }}
+        uses: actions/setup-node@v1
+        with:
+          node-version: ${{ env.node-version }}
+
+      - name: Install
+        run: npm ci
+
+      - name: Build
+        run: npm run build
+
+      - run: cat dist/politie/ngx-sherlock/package.json
+
+      - name: Release
+        uses: JS-DevTools/npm-publish@v1
+        with:
+          token: ${{ secrets.WORKFLOW_NPM_TOKEN }}
+          package: dist/politie/ngx-sherlock/package.json
+          dry-run: true
