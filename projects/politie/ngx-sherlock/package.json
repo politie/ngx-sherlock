@@ -4,9 +4,9 @@
     "peerDependencies": {
         "@angular/common": ">=6",
         "@angular/core": ">=6",
-        "@politie/sherlock": ">=3.3.0",
-        "@politie/sherlock-proxy": ">=3.3.0",
-        "@politie/sherlock-rxjs": ">=3.3.0"
+        "@politie/sherlock": ">=3.3.8",
+        "@politie/sherlock-proxy": ">=3.3.8",
+        "@politie/sherlock-rxjs": ">=3.3.8"
     },
     "contributors": [
         "Paco van der Linden <pavadeli@gmail.com>",
