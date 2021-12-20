@@ -1,4 +1,4 @@
-import { ChangeDetectorRef, Injectable } from '@angular/core';
+import { ChangeDetectorRef, Injectable, OnInit } from '@angular/core';
 import { _internal } from '@politie/sherlock';
 
 /** @internal */
@@ -36,16 +36,19 @@ export const { symbols } = _internal;
  * ```
  */
 @Injectable()
-export class AutoChangeDetectorService {
+export class AutoChangeDetectorService implements OnInit {
+    constructor(private readonly detector: ChangeDetectorRef) {}
 
-    constructor(private readonly detector: ChangeDetectorRef) {
-        if (!hasOnDestroy(detector)) {
+    ngOnInit() {
+        if (!hasOnDestroy(this.detector)) {
             // Incompatible Angular version?
-            throw new Error(`The method 'onDestroy' was not found on the provided ChangeDetectorRef. `
-                + `AutoChangeDetectorService will not work correctly.`);
+            throw new Error(
+                `The method 'onDestroy' was not found on the provided ChangeDetectorRef. ` +
+                `AutoChangeDetectorService will not work correctly.`
+            );
         }
-        detector.onDestroy(() => this[symbols.disconnect]());
-        detector.detach();
+        this.detector.onDestroy(() => this[symbols.disconnect]());
+        this.detector.detach();
     }
 
     /** @internal */
@@ -97,6 +100,6 @@ export class AutoChangeDetectorService {
     }
 }
 
-function hasOnDestroy(obj: any): obj is { onDestroy(cb: () => void): void; } {
+function hasOnDestroy(obj: any): obj is { onDestroy(cb: () => void): void } {
     return obj && typeof obj.onDestroy === 'function';
 }
