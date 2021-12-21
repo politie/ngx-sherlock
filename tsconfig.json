@@ -7,7 +7,6 @@
         "declaration": false,
         "module": "es2020",
         "moduleResolution": "node",
-        "emitDecoratorMetadata": true,
         "experimentalDecorators": true,
         "target": "es2015",
         "strict": true,
@@ -31,8 +30,5 @@
                 "dist/politie/ngx-sherlock/*"
             ]
         }
-    },
-    "angularCompilerOptions": {
-        "enableIvy": false
     }
 }
