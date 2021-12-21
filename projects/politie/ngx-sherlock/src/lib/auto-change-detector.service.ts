@@ -1,4 +1,4 @@
-import { ChangeDetectorRef, Injectable, OnInit } from '@angular/core';
+import { ChangeDetectorRef, Injectable, OnDestroy } from '@angular/core';
 import { _internal } from '@politie/sherlock';
 
 /** @internal */
@@ -36,10 +36,9 @@ export const { symbols } = _internal;
  * ```
  */
 @Injectable()
-export class AutoChangeDetectorService implements OnInit {
-    constructor(private readonly detector: ChangeDetectorRef) {}
+export class AutoChangeDetectorService implements OnDestroy {
 
-    ngOnInit() {
+    constructor(private readonly detector: ChangeDetectorRef) {
         if (!hasOnDestroy(this.detector)) {
             // Incompatible Angular version?
             throw new Error(
@@ -47,7 +46,6 @@ export class AutoChangeDetectorService implements OnInit {
                 `AutoChangeDetectorService will not work correctly.`
             );
         }
-        this.detector.onDestroy(() => this[symbols.disconnect]());
         this.detector.detach();
     }
 
@@ -91,6 +89,10 @@ export class AutoChangeDetectorService implements OnInit {
         } finally {
             _internal.stopRecordingObservations();
         }
+    }
+
+    ngOnDestroy() {
+        this[symbols.disconnect]();
     }
 
     private hasChange() {
