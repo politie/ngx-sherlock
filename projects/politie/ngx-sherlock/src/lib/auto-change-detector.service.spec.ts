@@ -1,5 +1,5 @@
 import { ChangeDetectionStrategy, ChangeDetectorRef, Component } from '@angular/core';
-import { ComponentFixture, fakeAsync, TestBed, tick } from '@angular/core/testing';
+import { ComponentFixture, fakeAsync, TestBed, tick, waitForAsync } from '@angular/core/testing';
 import { atom } from '@politie/sherlock';
 import { DerivableProxy, ProxyDescriptor } from '@politie/sherlock-proxy';
 import { AutoChangeDetectorService } from './auto-change-detector.service';
@@ -28,7 +28,7 @@ describe('AutoChangeDetectorService', () => {
         constructor(autoCD: AutoChangeDetectorService, readonly cd: ChangeDetectorRef) { autoCD.init(); }
     }
 
-    beforeEach(() => TestBed.configureTestingModule({ declarations: [TestComponent] }).compileComponents());
+    beforeEach(waitForAsync(() => TestBed.configureTestingModule({ declarations: [TestComponent] }).compileComponents()));
 
     let fixture: ComponentFixture<TestComponent>;
     let componentInstance: TestComponent;

@@ -1,5 +1,5 @@
 import { Component, ElementRef, QueryList, ViewChildren } from '@angular/core';
-import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
 import { derivableQueryList } from './derivable-query-list';
 
 describe('DerivableQueryList', () => {
@@ -21,7 +21,7 @@ describe('DerivableQueryList', () => {
         readonly paragraphs$ = derivableQueryList(() => this.paragraphs);
     }
 
-    beforeEach(() => TestBed.configureTestingModule({ declarations: [TestComponent] }).compileComponents());
+    beforeEach(waitForAsync(() => TestBed.configureTestingModule({ declarations: [TestComponent] }).compileComponents()));
 
     let fixture: ComponentFixture<TestComponent>;
     let componentInstance: TestComponent;
