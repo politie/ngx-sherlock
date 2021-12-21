@@ -1,6 +1,6 @@
 {
   "name": "ngx-sherlock-dev",
-  "version": "2.3.1",
+  "version": "3.0.0",
   "scripts": {
     "start": "FORCE_COLOR=1 npm-run-all -l -p watch:*",
     "watch:lib": "ng build @politie/ngx-sherlock --watch",
