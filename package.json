@@ -1,6 +1,6 @@
 {
   "name": "ngx-sherlock-dev",
-  "version": "3.0.0",
+  "version": "3.0.1",
   "scripts": {
     "start": "FORCE_COLOR=1 npm-run-all -l -p watch:*",
     "watch:lib": "ng build @politie/ngx-sherlock --watch",
@@ -44,7 +44,7 @@
     "codelyzer": "^6.0.0",
     "jasmine-core": "^3.7.1",
     "jasmine-spec-reporter": "^7.0.0",
-    "karma": "^6.3.9",
+    "karma": "^6.3.16",
     "karma-chrome-launcher": "~3.1.0",
     "karma-coverage": "^2.1.0",
     "karma-jasmine": "~4.0.1",
