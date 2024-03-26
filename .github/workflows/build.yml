@@ -43,7 +43,10 @@ jobs:
         run: npm run build:build
 
       - name: Start Application
-        run: npm run start:app & wait-on http://localhost:4200
+        run: |
+          npm install -g wait-on 
+          npm run start:app
+          wait-on http://localhost:4200
 
       - name: E2E
         run: npm run cypress:run
