@@ -1,49 +1,49 @@
 name: CI
 
 on:
-    push:
-        branches: [main]
-    pull_request:
-        branches: [main]
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
 
 jobs:
-    build:
-        name: Build and Test
-        runs-on: ubuntu-latest
-        strategy:
-            matrix:
-                node-version: [18.x, 20.x]
+  build:
+    name: Build and Test
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        node-version: [18.x, 20.x]
 
-        steps:
-            - uses: actions/checkout@v4
+    steps:
+      - uses: actions/checkout@v4
 
-            - name: Use node.js ${{ matrix.node-version }}
-              uses: actions/setup-node@v4
-              with:
-                  node-version: ${{ matrix.node-version }}
+      - name: Use node.js ${{ matrix.node-version }}
+        uses: actions/setup-node@v4
+        with:
+          node-version: ${{ matrix.node-version }}
 
-            - name: Cache node_modules
-              id: cache-modules
-              uses: actions/cache@v4
-              with:
-                  path: node_modules
-                  key: ${{ matrix.node-version }}-${{ runner.OS }}-build-${{ hashFiles('package.json') }}
+      - name: Cache node_modules
+        id: cache-modules
+        uses: actions/cache@v4
+        with:
+          path: node_modules
+          key: ${{ matrix.node-version }}-${{ runner.OS }}-build-${{ hashFiles('package.json') }}
 
-            - name: Install
-              if: ${{ steps.cache-modules.outputs.cache-hit != 'true' }}
-              run: npm install
+      - name: Install
+        if: ${{ steps.cache-modules.outputs.cache-hit != 'true' }}
+        run: npm install
 
-            - name: Test
-              run: npm run test:ci
+      - name: Test
+        run: npm run test:ci
 
-            - name: Lint
-              run: npm run lint
+      - name: Lint
+        run: npm run lint
 
-            - name: Build
-              run: npm run build:build
+      - name: Build
+        run: npm run build:build
 
-            - name: Cypress e2e test
-              uses: cypress-io/github-action@v6
-              with:
-                  start: npm start
-                  browser: chrome
+      - name: Cypress e2e test
+        uses: cypress-io/github-action@v6
+        with:
+          start: npm start
+          browser: chrome
