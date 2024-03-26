@@ -8,25 +8,25 @@ const noRetries = {
 
 describe('workspace-project App', () => {
   it('Visits the initial project page', () => {
-    cy.visit('/')
-    cy.get('app-root h1').contains('Welcome to the demo of @politie/ngx-sherlock')
-  })
+    cy.visit('/');
+    cy.get('app-root h1').contains('Welcome to the demo of @politie/ngx-sherlock');
+  });
 
   it('should update the auto changedetection every second', { retries: noRetries }, done => {
-    cy.visit('/')
+    cy.visit('/');
     checkTime(getAutoCDClock, done);
   });
 
   it('should update the value pipe every second', { retries: noRetries }, done => {
-    cy.visit('/')
+    cy.visit('/');
     checkTime(getPipeClock, done);
   });
 
   it('should update the value proxy pipe every second', { retries: noRetries }, done => {
-    cy.visit('/')
+    cy.visit('/');
     checkTime(getProxyPipeClock, done);
   });
-})
+});
 
 const checkTime = (func: () => Cypress.Chainable<JQuery<HTMLElement>>, done: Mocha.Done) => {
   func().invoke('text').then((timeFirst) => {
@@ -34,18 +34,18 @@ const checkTime = (func: () => Cypress.Chainable<JQuery<HTMLElement>>, done: Moc
     func().invoke('text').then((timeSecond) => {
       expect(timeSecond).not.to.equal(timeFirst);
       done();
-    })
+    });
   });
-}
+};
 
 const getAutoCDClock = () => {
   return cy.get('app-auto-change-detection-service time').first();
-}
+};
 
 const getPipeClock = () => {
   return cy.get('app-value-pipe time.base-clock').first();
-}
+};
 
 const getProxyPipeClock = () => {
   return cy.get('app-value-pipe time.base-clock').last();
-}
+};

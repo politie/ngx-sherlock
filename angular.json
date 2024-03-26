@@ -218,7 +218,7 @@
             "tsConfig": [
               "projects/politie/ngx-sherlock/tsconfig.lib.json",
               "projects/politie/ngx-sherlock/tsconfig.spec.json",
-              "projects/politie/ngx-sherlock/cypress/tsconfig.json"
+              "cypress/tsconfig.json"
             ],
             "exclude": [
               "**/node_modules/**"
