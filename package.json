@@ -3,6 +3,7 @@
   "version": "3.1.7",
   "scripts": {
     "start": "export NODE_OPTIONS=--openssl-legacy-provider && FORCE_COLOR=1 npm-run-all -l -p watch:*",
+    "start:app": "export NODE_OPTIONS=--openssl-legacy-provider && ng serve --open",
     "watch:lib": "ng build @politie/ngx-sherlock --watch",
     "watch:app": "sleep 10 && ng serve --open",
     "clean": "rimraf coverage dist",
