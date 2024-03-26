@@ -1,9 +1,10 @@
 {
-    "editor.formatOnSave": true,
-    "editor.codeActionsOnSave": {
-        "source.fixAll": true,
-    },
-    "html.format.wrapAttributes": "aligned-multiple",
-    "html.format.wrapLineLength": 150,
-    "typescript.tsdk": "node_modules/typescript/lib"
+  "editor.formatOnSave": true,
+  "editor.codeActionsOnSave": {
+    "source.fixAll": "explicit"
+  },
+  "html.format.wrapAttributes": "aligned-multiple",
+  "html.format.wrapLineLength": 150,
+  "typescript.tsdk": "node_modules/typescript/lib",
+  "npm.exclude": "**/dist/**"
 }
