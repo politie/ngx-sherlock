@@ -1,6 +1,6 @@
 {
   "name": "ngx-sherlock-dev",
-  "version": "3.1.8",
+  "version": "3.1.9",
   "scripts": {
     "start": "export NODE_OPTIONS=--openssl-legacy-provider && FORCE_COLOR=1 npm-run-all -l -p watch:*",
     "start:app": "export NODE_OPTIONS=--openssl-legacy-provider && ng serve --open",
