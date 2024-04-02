@@ -5,7 +5,7 @@ on:
     branches: [main]
 
 env:
-  NODE_VERSION: 16.x
+  NODE_VERSION: 18.x
 
 jobs:
   bump-version:
@@ -16,25 +16,25 @@ jobs:
       tag-name: ${{ steps.lib-bump.outputs.newTag }}
 
     steps:
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v4
         with:
           # This is a public_repo Github personal access token.
           token: ${{ secrets.WORKFLOW_GITHUB_TOKEN }}
 
       - name: Bump dev-app version
         id: dev-bump
-        uses: phips28/gh-action-bump-version@v9.1.0
+        uses: phips28/gh-action-bump-version@v11.0.4
         with:
-          tag-prefix: 'v'
+          tag-prefix: "v"
           skip-tag: true
-          commit-message: '[CI/CD]: bump dev-app to {{version}}'
+          commit-message: "[CI/CD]: bump dev-app to {{version}}"
 
       - name: Bump lib version
         id: lib-bump
-        uses: phips28/gh-action-bump-version@v9.1.0
+        uses: phips28/gh-action-bump-version@v11.0.4
         with:
-          tag-prefix: 'v'
-          commit-message: '[CI/CD]: bump lib to {{version}}'
+          tag-prefix: "v"
+          commit-message: "[CI/CD]: bump lib to {{version}}"
         env:
           PACKAGEJSON_DIR: projects/politie/ngx-sherlock
 
@@ -50,7 +50,7 @@ jobs:
           ref: ${{ needs.bump-version.outputs.tag-name }}
 
       - name: Release
-        uses: softprops/action-gh-release@v1
+        uses: softprops/action-gh-release@v2
         with:
           tag_name: ${{ needs.bump-version.outputs.tag-name }}
 
@@ -61,12 +61,12 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v4
         with:
           ref: ${{ needs.bump-version.outputs.tag-name }}
 
       - name: Use node.js ${{ env.NODE_VERSION }}
-        uses: actions/setup-node@v3
+        uses: actions/setup-node@v4
         with:
           node-version: ${{ env.NODE_VERSION }}
 
@@ -74,7 +74,7 @@ jobs:
         run: npm ci
 
       - name: Build
-        run: npm run build:ci
+        run: npm run build:prod
 
       - name: Add token to .npmrc
         env:
@@ -83,6 +83,6 @@ jobs:
           # for the four sherlock packages only.
           npmToken: ${{ secrets.WORKFLOW_NPM_TOKEN }}
         run: echo "//registry.npmjs.org/:_authToken=$npmToken" >> .npmrc
-        
+
       - name: Release
         run: npm publish ./dist/politie/ngx-sherlock
