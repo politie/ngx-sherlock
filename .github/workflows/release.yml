@@ -25,16 +25,16 @@ jobs:
         id: dev-bump
         uses: phips28/gh-action-bump-version@v11.0.4
         with:
-          tag-prefix: 'v'
+          tag-prefix: "v"
           skip-tag: true
-          commit-message: '[CI/CD]: bump dev-app to {{version}}'
+          commit-message: "[CI/CD]: bump dev-app to {{version}}"
 
       - name: Bump lib version
         id: lib-bump
         uses: phips28/gh-action-bump-version@v11.0.4
         with:
-          tag-prefix: 'v'
-          commit-message: '[CI/CD]: bump lib to {{version}}'
+          tag-prefix: "v"
+          commit-message: "[CI/CD]: bump lib to {{version}}"
         env:
           PACKAGEJSON_DIR: projects/politie/ngx-sherlock
 
@@ -74,7 +74,7 @@ jobs:
         run: npm ci
 
       - name: Build
-        run: npm run build:ci
+        run: npm run build:prod
 
       - name: Add token to .npmrc
         env:
@@ -83,6 +83,6 @@ jobs:
           # for the four sherlock packages only.
           npmToken: ${{ secrets.WORKFLOW_NPM_TOKEN }}
         run: echo "//registry.npmjs.org/:_authToken=$npmToken" >> .npmrc
-        
+
       - name: Release
         run: npm publish ./dist/politie/ngx-sherlock
