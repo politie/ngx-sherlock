@@ -12,7 +12,7 @@ jobs:
     runs-on: ubuntu-latest
     strategy:
       matrix:
-        node-version: [18.x, 20.x]
+        node-version: [18.x, 20.x, 22.x]
 
     steps:
       - uses: actions/checkout@v4
@@ -46,7 +46,7 @@ jobs:
 
       - name: Start Application
         run: |
-          npm install -g wait-on 
+          npm install -g wait-on
           npm run start:app & wait-on http://localhost:4200
 
       - name: E2E
