@@ -28,9 +28,9 @@
     "@angular/platform-browser": "^15.2.10",
     "@angular/platform-browser-dynamic": "^15.2.10",
     "@angular/router": "^15.2.10",
-    "@politie/sherlock": "^3.3.8",
-    "@politie/sherlock-proxy": "^3.3.8",
-    "@politie/sherlock-rxjs": "^3.3.8",
+    "@politie/sherlock": "^3.4.16",
+    "@politie/sherlock-proxy": "^3.4.16",
+    "@politie/sherlock-rxjs": "^3.4.16",
     "rxjs": "^6.6.7",
     "tslib": "^2.0.0",
     "zone.js": "~0.11.4"
@@ -65,8 +65,5 @@
     "rimraf": "^3.0.2",
     "ts-node": "^10.0.0",
     "typescript": "^4.6.4"
-  },
-  "overrides": {
-    "webpack@5.50.0": "5.74.0"
   }
 }
