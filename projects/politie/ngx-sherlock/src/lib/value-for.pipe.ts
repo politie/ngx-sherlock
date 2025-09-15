@@ -3,9 +3,9 @@ import {
     OnDestroy,
     Pipe,
     PipeTransform,
-} from "@angular/core";
-import { Derivable, isDerivable, unresolved } from "@politie/sherlock";
-import { DerivableProxy, isDerivableProxy } from "@politie/sherlock-proxy";
+} from '@angular/core';
+import { Derivable, isDerivable, unresolved } from '@politie/sherlock';
+import { DerivableProxy, isDerivableProxy } from '@politie/sherlock-proxy';
 
 /**
  * The {@link ValueForPipe} is designed to be used inside Angular's
@@ -16,7 +16,7 @@ import { DerivableProxy, isDerivableProxy } from "@politie/sherlock-proxy";
  * so you can decide in the template how to extract the value (`.get()` or `$value`).
  *
  * Whenever the derivable updates, the `ChangeDetectorRef` of the `@Host()` component
- * will be `markedForCheck` to ensure the loop items re-render correctly.
+ * will be `markForCheck` to ensure the loop items re-render correctly.
  *
  * ## Example usage
  *
@@ -32,7 +32,7 @@ import { DerivableProxy, isDerivableProxy } from "@politie/sherlock-proxy";
  * }
  * ```
  */
-@Pipe({ name: "valueFor", pure: false })
+@Pipe({ name: 'valueFor', pure: false })
 export class ValueForPipe<T> implements PipeTransform, OnDestroy {
     #current?: Derivable<T> | DerivableProxy<T>;
     #unsubscribe?: () => void;
