@@ -2,8 +2,8 @@
     "name": "@politie/ngx-sherlock",
     "version": "3.3.1",
     "peerDependencies": {
-        "@angular/common": ">=6",
-        "@angular/core": ">=6",
+        "@angular/common": ">=15",
+        "@angular/core": ">=15",
         "@politie/sherlock": ">=3.3.8",
         "@politie/sherlock-proxy": ">=3.3.8",
         "@politie/sherlock-rxjs": ">=3.3.8"
