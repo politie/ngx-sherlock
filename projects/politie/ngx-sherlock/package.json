@@ -1,6 +1,11 @@
 {
     "name": "@politie/ngx-sherlock",
     "version": "3.3.2",
+    "type": "module",
+    "main": "./esm2022/politie-ngx-sherlock.mjs",
+    "module": "./esm2022/politie-ngx-sherlock.mjs",
+    "typings": "./index.d.ts",
+    "sideEffects": false,
     "peerDependencies": {
         "@angular/common": ">=15",
         "@angular/core": ">=15",
