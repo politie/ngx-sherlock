@@ -9,15 +9,16 @@ describe('AutoChangeDetectorService', () => {
 
     @Component({
         template: `
-            <p *ngIf="!enableProxy$.value">{{ state$.value?.myProp }}</p>
-            <p *ngIf="enableProxy$.value">proxy: {{ proxyState$.myProp.$value }}</p>
-            {{ spy() }}
-        `,
+                <p *ngIf="!enableProxy$.value">{{ state$.value?.myProp }}</p>
+                <p *ngIf="enableProxy$.value">proxy: {{ proxyState$.myProp.$value }}</p>
+                {{ spy() }}
+            `,
         changeDetection: ChangeDetectionStrategy.OnPush,
         providers: [
             AutoChangeDetectorService,
         ],
-    })
+        standalone: false
+})
     class TestComponent {
         readonly state$ = atom({ myProp: 'my value' });
         readonly proxyState$ = new ProxyDescriptor().$create(this.state$) as DerivableProxy<{ myProp: string }> & { myProp: DerivableProxy<string> };

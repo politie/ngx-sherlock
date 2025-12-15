@@ -46,6 +46,7 @@ class DerivableProxyWrapper<T> implements Wrapper<T> {
 @Pipe({
     name: 'value',
     pure: false,
+    standalone: false
 })
 export class ValuePipe<T> implements PipeTransform, OnDestroy {
 

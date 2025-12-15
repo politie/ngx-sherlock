@@ -6,11 +6,12 @@ describe('DerivableQueryList', () => {
 
     @Component({
         template: `
-            <p #item *ngIf="first">First</p>
-            <p #item *ngIf="second">Second</p>
-            <p #item *ngIf="third">Third</p>
-        `,
-    })
+                <p #item *ngIf="first">First</p>
+                <p #item *ngIf="second">Second</p>
+                <p #item *ngIf="third">Third</p>
+            `,
+        standalone: false
+})
     class TestComponent {
         first = true;
         second = false;
