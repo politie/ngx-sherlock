@@ -7,6 +7,7 @@ import { ClockService } from '../clock.service';
     templateUrl: './auto-change-detection-service.component.html',
     changeDetection: ChangeDetectionStrategy.OnPush,
     providers: [AutoChangeDetectorService],
+    standalone: false
 })
 export class AutoChangeDetectionServiceComponent {
 

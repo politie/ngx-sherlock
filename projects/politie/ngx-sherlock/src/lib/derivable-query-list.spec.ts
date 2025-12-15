@@ -5,12 +5,13 @@ import { derivableQueryList } from './derivable-query-list';
 describe('DerivableQueryList', () => {
 
     @Component({
-        template: `
+    template: `
             <p #item *ngIf="first">First</p>
             <p #item *ngIf="second">Second</p>
             <p #item *ngIf="third">Third</p>
         `,
-    })
+    standalone: false
+})
     class TestComponent {
         first = true;
         second = false;
