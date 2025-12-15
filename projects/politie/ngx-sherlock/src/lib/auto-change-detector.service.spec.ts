@@ -8,17 +8,20 @@ import { getObservers } from './utils.spec';
 describe('AutoChangeDetectorService', () => {
 
     @Component({
-    template: `
-            <p *ngIf="!enableProxy$.value">{{ state$.value?.myProp }}</p>
-            <p *ngIf="enableProxy$.value">proxy: {{ proxyState$.myProp.$value }}</p>
+        template: `
+            @if (enableProxy$.value) {
+                <p>proxy: {{ proxyState$.myProp.$value }}</p>
+            }
+            @else {
+                <p>{{ state$.value?.myProp }}</p>
+            }
             {{ spy() }}
         `,
-    changeDetection: ChangeDetectionStrategy.OnPush,
-    providers: [
-        AutoChangeDetectorService,
-    ],
-    standalone: false
-})
+        changeDetection: ChangeDetectionStrategy.OnPush,
+        providers: [
+            AutoChangeDetectorService,
+        ],
+    })
     class TestComponent {
         readonly state$ = atom({ myProp: 'my value' });
         readonly proxyState$ = new ProxyDescriptor().$create(this.state$) as DerivableProxy<{ myProp: string }> & { myProp: DerivableProxy<string> };
@@ -29,7 +32,7 @@ describe('AutoChangeDetectorService', () => {
         constructor(autoCD: AutoChangeDetectorService, readonly cd: ChangeDetectorRef) { autoCD.init(); }
     }
 
-    beforeEach(waitForAsync(() => TestBed.configureTestingModule({ declarations: [TestComponent] }).compileComponents()));
+    beforeEach(waitForAsync(() => TestBed.configureTestingModule({ imports: [TestComponent] }).compileComponents()));
 
     let fixture: ComponentFixture<TestComponent>;
     let componentInstance: TestComponent;
