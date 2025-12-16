@@ -1,3 +1,5 @@
+<!-- markdownlint-configure-file { "MD024": { "siblings_only": true } } -->
+
 # Ngx Sherlock
 
 [![CI](https://github.com/politie/ngx-sherlock/actions/workflows/build.yml/badge.svg)](https://github.com/politie/ngx-sherlock/actions/workflows/build.yml)
@@ -31,7 +33,10 @@ import { NgxSherlockModule } from '@politie/ngx-sherlock';
 export class AppModule { }
 ```
 
-### `autoDetectChanges`
+When building a standalone application, importing the module is not necessary.
+The services and pipes can all be imported directly into standalone components.
+
+### `AutoChangeDetectorService`
 
 **Signature**:
 
@@ -101,8 +106,6 @@ export class SidekickGreeterComponent implements OnInit {
     }
 }
 ```
-
----
 
 ### `ValuePipe`
 
