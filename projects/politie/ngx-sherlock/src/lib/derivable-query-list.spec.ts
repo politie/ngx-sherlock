@@ -6,9 +6,15 @@ describe('DerivableQueryList', () => {
 
     @Component({
         template: `
-            <p #item *ngIf="first">First</p>
-            <p #item *ngIf="second">Second</p>
-            <p #item *ngIf="third">Third</p>
+            @if (first) {
+                <p #item>First</p>
+            }
+            @if (second) {
+                <p #item>Second</p>
+            }
+            @if (third) {
+                <p #item>Third</p>
+            }
         `,
     })
     class TestComponent {
@@ -21,7 +27,7 @@ describe('DerivableQueryList', () => {
         readonly paragraphs$ = derivableQueryList(() => this.paragraphs);
     }
 
-    beforeEach(waitForAsync(() => TestBed.configureTestingModule({ declarations: [TestComponent] }).compileComponents()));
+    beforeEach(waitForAsync(() => TestBed.configureTestingModule({ imports: [TestComponent] }).compileComponents()));
 
     let fixture: ComponentFixture<TestComponent>;
     let componentInstance: TestComponent;

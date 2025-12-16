@@ -9,8 +9,12 @@ describe('AutoChangeDetectorService', () => {
 
     @Component({
         template: `
-            <p *ngIf="!enableProxy$.value">{{ state$.value?.myProp }}</p>
-            <p *ngIf="enableProxy$.value">proxy: {{ proxyState$.myProp.$value }}</p>
+            @if (enableProxy$.value) {
+                <p>proxy: {{ proxyState$.myProp.$value }}</p>
+            }
+            @else {
+                <p>{{ state$.value?.myProp }}</p>
+            }
             {{ spy() }}
         `,
         changeDetection: ChangeDetectionStrategy.OnPush,
@@ -28,7 +32,7 @@ describe('AutoChangeDetectorService', () => {
         constructor(autoCD: AutoChangeDetectorService, readonly cd: ChangeDetectorRef) { autoCD.init(); }
     }
 
-    beforeEach(waitForAsync(() => TestBed.configureTestingModule({ declarations: [TestComponent] }).compileComponents()));
+    beforeEach(waitForAsync(() => TestBed.configureTestingModule({ imports: [TestComponent] }).compileComponents()));
 
     let fixture: ComponentFixture<TestComponent>;
     let componentInstance: TestComponent;

@@ -32,12 +32,14 @@ import { DerivableProxy, isDerivableProxy } from '@politie/sherlock-proxy';
  * }
  * ```
  */
-@Pipe({ name: 'valueFor', pure: false })
+@Pipe({
+    name: 'valueFor', pure: false,
+})
 export class ValueForPipe<T> implements PipeTransform, OnDestroy {
     #current?: Derivable<T> | DerivableProxy<T>;
     #unsubscribe?: () => void;
 
-    constructor(private readonly cdr: ChangeDetectorRef) {}
+    constructor(private readonly cdr: ChangeDetectorRef) { }
 
     transform<D extends Derivable<T> | DerivableProxy<T>>(
         derivable: D
