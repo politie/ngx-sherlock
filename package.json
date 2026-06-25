@@ -30,7 +30,7 @@
     "@politie/sherlock": "^3.4.16",
     "@politie/sherlock-proxy": "^3.4.16",
     "@politie/sherlock-rxjs": "^3.4.16",
-    "rxjs": "^6.6.7",
+    "rxjs": "^7.8.2",
     "tslib": "^2.0.0",
     "zone.js": "~0.15.1"
   },
