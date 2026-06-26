@@ -1,6 +1,11 @@
 {
     "name": "@politie/ngx-sherlock",
     "version": "3.4.1",
+    "repository": {
+        "type": "git",
+        "url": "https://github.com/politie/ngx-sherlock",
+        "directory": "projects/politie/ngx-sherlock"
+    },
     "peerDependencies": {
         "@angular/common": ">=15",
         "@angular/core": ">=15",
